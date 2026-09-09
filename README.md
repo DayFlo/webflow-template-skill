@@ -2,8 +2,8 @@
 
 A Claude Code / Claude.ai / Codex skill that turns a design into an
 **unpublished draft page** in a Webflow site, built from a reusable **template
-family** — the components, styles, variables, and layout conventions the site
-already has. It never publishes.
+family** - the components, styles, variables, and layout conventions the site
+already has. It does not publish.
 
 The shape of every build is fixed:
 
