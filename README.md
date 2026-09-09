@@ -100,9 +100,11 @@ catalog of your own. Onboarding does not touch it.
 
 ## Install
 
-The repository is a plugin marketplace root: a `.claude-plugin/marketplace.json`
-for Claude Code, an `.agents/plugins/marketplace.json` for Codex, and one plugin
-directory, `plugins/design-automations`, containing the skill.
+The repository is a plugin marketplace root:
+- `.claude-plugin/marketplace.json`
+for Claude Code
+- `.agents/plugins/marketplace.json` for Codex
+- one plugin directory, `plugins/design-automations`, containing the skill
 
 ### Claude Code
 
