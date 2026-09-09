@@ -1,0 +1,40 @@
+{
+  "capturedAt": "2026-01-04T16:00:00Z",
+  "styles": {
+    "hero_title": "sha256:aaa1",
+    "hero_media": {"line-height": "56px", "font-size": "48px"},
+    "u-text-center": "sha256:util1",
+    "product-landing_comparison-grid": "sha256:new-style"
+  },
+  "components": {
+    "comp-hero": {
+      "name": "Hero / Product",
+      "group": "product-landing",
+      "description": "product-landing@1.1.0 | promoted",
+      "base": "sha256:base-hero",
+      "props": {"heading": "text", "ctaLabel": "text", "eyebrow": "text"},
+      "variants": {"default": "sha256:v-default", "dark": "sha256:v-dark", "icon-top": "sha256:v-icon-top"}
+    },
+    "comp-nav": {
+      "name": "Site nav",
+      "group": "shell",
+      "description": "shell | promoted",
+      "base": "sha256:base-nav",
+      "props": {},
+      "variants": {"default": "sha256:nav-default"}
+    },
+    "comp-comparison": {
+      "name": "Comparison grid",
+      "group": "product-landing",
+      "description": "product-landing@1.1.0 | candidate | run acme-integration",
+      "base": "sha256:base-comparison",
+      "props": {"heading": "text"},
+      "variants": {"default": "sha256:cmp-default"}
+    }
+  },
+  "variables": {
+    "var-brand": {"name": "--color-brand-primary", "value": "#0044dd"},
+    "var-ink": "sha256:ink",
+    "var-surface-2": {"name": "--color-surface-2", "value": "#f5f7fa"}
+  }
+}

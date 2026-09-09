@@ -1,0 +1,30 @@
+{
+  "capturedAt": "2026-01-04T15:00:00Z",
+  "styles": {
+    "hero_title": "sha256:aaa1",
+    "hero_media": {"font-size": "48px", "line-height": "56px"},
+    "u-text-center": "sha256:util1"
+  },
+  "components": {
+    "comp-hero": {
+      "name": "Hero / Product",
+      "group": "product-landing",
+      "description": "product-landing@1.1.0 | promoted",
+      "base": "sha256:base-hero",
+      "props": {"heading": "text", "ctaLabel": "text"},
+      "variants": {"default": "sha256:v-default", "dark": "sha256:v-dark"}
+    },
+    "comp-nav": {
+      "name": "Site nav",
+      "group": "shell",
+      "description": "shell | promoted",
+      "base": "sha256:base-nav",
+      "props": {},
+      "variants": {"default": "sha256:nav-default"}
+    }
+  },
+  "variables": {
+    "var-brand": {"name": "--color-brand-primary", "value": "#0044dd"},
+    "var-ink": "sha256:ink"
+  }
+}

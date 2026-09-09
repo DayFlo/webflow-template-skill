@@ -1,0 +1,45 @@
+name: CI
+
+# Offline checks. Python 3.11, standard library only; nothing here talks to
+# Webflow.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    env:
+      SKILL: plugins/design-automations/skills/webflow-template
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Unit tests
+        working-directory: ${{ env.SKILL }}
+        run: python3 -m unittest discover -s scripts/tests -v
+
+      - name: Catalog lint (shipped catalog, which is empty, plus sync state)
+        working-directory: ${{ env.SKILL }}
+        run: python3 scripts/catalog_lint.py references/catalog --sync-state references/sync-state.json
+
+      - name: Catalog lint (the worked example)
+        working-directory: ${{ env.SKILL }}
+        run: python3 scripts/catalog_lint.py references/examples/catalog
+
+      - name: Validate the example briefs
+        working-directory: ${{ env.SKILL }}
+        run: |
+          python3 scripts/validate_brief.py assets/brief.example.json
+          python3 scripts/validate_brief.py assets/examples/example.brief.json --require-approval
+
+      - name: Repository structure and disclosure checks
+        run: bash checks/repo-check.sh

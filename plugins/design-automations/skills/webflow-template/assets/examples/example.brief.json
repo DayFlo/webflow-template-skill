@@ -1,0 +1,524 @@
+{
+  "site": {
+    "id": "0000000000000000000000a0",
+    "shortName": "example-co"
+  },
+  "family": "product-landing",
+  "familyVersion": "1.1.0",
+  "templateModel": "hybrid",
+  "isolationMode": "draft-main",
+  "sources": [
+    {
+      "type": "claude-design-html",
+      "location": "orbit-integration.html (attached)",
+      "observed": [
+        "9 sections: nav, hero, logo bar, media walkthrough with the media on the right, one supporting benefit band, three numbered setup steps, three-column feature grid, FAQ with four questions, closing CTA, footer",
+        "Primary CTA 'Connect Orbit' in the hero and the CTA band",
+        "Colours #1B4DF5, #101322, #F4F6FB; heading font at 48px"
+      ],
+      "assumed": [
+        "The mirrored media layout is a deliberate choice and worth a variant rather than a one-off override",
+        "The setup steps repeat on every future integration page, so they deserve a component"
+      ]
+    }
+  ],
+  "answers": {
+    "purpose": "Explain the Orbit integration to an evaluating buyer and get them to connect it.",
+    "primaryAction": {
+      "label": "Connect Orbit",
+      "destinationPageId": "0000000000000000000000b3"
+    },
+    "pageIdentity": {
+      "title": "Example Co + Orbit",
+      "slug": "orbit",
+      "folder": "/integrations"
+    },
+    "seo": "family defaults",
+    "shell": "nav and footer from the master (variant default)",
+    "sections": "matches the family plus one new section (setup steps)",
+    "contentStatus": "all copy final except the third setup step (draft), the benefit band body (publisher enters it in the Designer) and the fourth FAQ answer (missing)",
+    "images": "hero and benefit images by public URL; customer logos already in the asset library",
+    "forms": "none",
+    "responsive": "setup steps stack to one column below 767",
+    "localization": "primary locale only",
+    "schema": "family default (WebPage) plus FAQPage from the FAQ slot",
+    "launchOwner": "the design team, review within a week",
+    "usedFamilyDefaults": true
+  },
+  "page": {
+    "title": "Example Co + Orbit",
+    "slug": "orbit",
+    "folder": {
+      "path": "/integrations",
+      "id": "0000000000000000000000c2"
+    },
+    "seo": {
+      "title": "Orbit integration | Example Co",
+      "description": "Connect Orbit to Example Co in a few minutes. Records sync both ways, field mapping is set once, and duplicates are merged automatically."
+    },
+    "openGraph": {
+      "title": "Orbit integration | Example Co",
+      "description": "Connect Orbit to Example Co in a few minutes. Records sync both ways, field mapping is set once, and duplicates are merged automatically.",
+      "imageAssetName": "og-default.png"
+    },
+    "schemaType": "WebPage"
+  },
+  "sections": [
+    {
+      "order": 1,
+      "familySection": "nav",
+      "designSection": "nav",
+      "reuseLevel": "reused",
+      "componentName": "Site nav",
+      "variant": "default",
+      "slots": []
+    },
+    {
+      "order": 2,
+      "familySection": "hero",
+      "designSection": "hero",
+      "reuseLevel": "reused",
+      "componentName": "Hero / Product",
+      "variant": "default",
+      "layout": {
+        "columns": 2,
+        "align": "left"
+      },
+      "slots": [
+        {
+          "name": "Heading",
+          "content": "Keep Orbit and Example Co in step",
+          "status": "final"
+        },
+        {
+          "name": "Subhead",
+          "content": "Records written in either tool show up in the other within a minute, with the field mapping you choose once and never revisit.",
+          "status": "final"
+        },
+        {
+          "name": "Button Text",
+          "content": "Connect Orbit",
+          "status": "final"
+        },
+        {
+          "name": "Button Link",
+          "content": "page:0000000000000000000000b3",
+          "status": "final"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://cdn.example.com/orbit/hero-1600x900.png",
+          "alt": "An Orbit record opening beside the matching Example Co record"
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "familySection": "logo-bar",
+      "designSection": "logo bar",
+      "reuseLevel": "reused",
+      "componentName": "Logo bar",
+      "variant": "default",
+      "layout": {
+        "columns": 6,
+        "breakpoints": {
+          "991": 3,
+          "767": 3,
+          "479": 2
+        }
+      },
+      "slots": [
+        {
+          "name": "Caption",
+          "content": "Teams running both tools",
+          "status": "final"
+        }
+      ],
+      "images": [
+        {
+          "assetName": "logo-customer-a.svg",
+          "alt": "Customer A"
+        },
+        {
+          "assetName": "logo-customer-b.svg",
+          "alt": "Customer B"
+        },
+        {
+          "assetName": "logo-customer-c.svg",
+          "alt": "Customer C"
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "familySection": "media-sidebar",
+      "designSection": "media walkthrough, media on the right",
+      "reuseLevel": "adapted",
+      "componentName": "Media sidebar section",
+      "variant": null,
+      "adaptation": {
+        "newVariant": "media--right",
+        "notes": "Mirrors the base layout: cards on the left, media on the right. Styles only, no prop or structure change. Created with create_variant, then set_variant_styles on the row flex-direction."
+      },
+      "layout": {
+        "columns": 2,
+        "breakpoints": {
+          "991": 1,
+          "767": 1,
+          "479": 1
+        }
+      },
+      "slots": [
+        {
+          "name": "Media",
+          "content": "https://videos.example.com/orbit-walkthrough",
+          "status": "final"
+        },
+        {
+          "name": "Header/Overline",
+          "content": "How it works",
+          "status": "final"
+        },
+        {
+          "name": "Header/Heading",
+          "content": "Two systems, one record",
+          "status": "final"
+        },
+        {
+          "name": "Header/Body Copy",
+          "content": "Example Co watches for changes on both sides and writes the winning value back, so nobody has to reconcile a spreadsheet on Friday afternoon.",
+          "status": "final"
+        },
+        {
+          "name": "Sidebar/Card Body",
+          "content": "An administrator connects the workspace once; everyone else signs in with their own account.",
+          "status": "final"
+        },
+        {
+          "name": "Sidebar/Card Button Text",
+          "content": "Read the setup guide",
+          "status": "final"
+        },
+        {
+          "name": "Sidebar/Card Button Link",
+          "content": "https://docs.example.com/orbit",
+          "status": "final"
+        },
+        {
+          "name": "Attributes/Id",
+          "content": "how-it-works",
+          "status": "final"
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "familySection": "benefit-a",
+      "designSection": "supporting benefit band",
+      "reuseLevel": "reused",
+      "componentName": "loose",
+      "classPath": "section.l-section.l-bg--surface-1",
+      "masterSection": 4,
+      "layout": {
+        "columns": 2
+      },
+      "slots": [
+        {
+          "name": "heading",
+          "content": "Duplicates merged before anyone sees them",
+          "status": "final"
+        },
+        {
+          "name": "body",
+          "content": "Matching rules run on every write, so a record created twice arrives once. Deleted records are archived rather than dropped.",
+          "status": "manual"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://cdn.example.com/orbit/merge-1200x800.png",
+          "alt": "Two matching records merging into one"
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "familySection": "setup-steps",
+      "designSection": "three numbered setup steps",
+      "reuseLevel": "new",
+      "newComponentSpec": {
+        "name": "Setup steps section",
+        "description": "Three numbered setup steps with an optional note under the last one; static content through props. Fills the gap between the walkthrough and the feature grid on integration pages.",
+        "structure": [
+          "section.l-section.l-bg--surface-2 > div.l-container",
+          "header block: Overline, Heading, Body Copy",
+          "ol.c-setupsteps with three li.c-setupsteps__li: span.c-setupsteps__li__num, heading (h3), paragraph"
+        ],
+        "props": [
+          "Overline",
+          "Heading",
+          "Body Copy",
+          "Step 1 - Heading",
+          "Step 1 - Body",
+          "Step 2 - Heading",
+          "Step 2 - Body",
+          "Step 3 - Heading",
+          "Step 3 - Body",
+          "Id"
+        ],
+        "newClasses": [
+          "c-setupsteps",
+          "c-setupsteps__li",
+          "c-setupsteps__li__num"
+        ],
+        "candidateSlug": "partner-setup-steps",
+        "group": "product-landing",
+        "descriptionTag": "product-landing@1.1.0 | candidate | run orbit"
+      },
+      "layout": {
+        "columns": 3,
+        "breakpoints": {
+          "991": 3,
+          "767": 1,
+          "479": 1
+        }
+      },
+      "slots": [
+        {
+          "name": "Overline",
+          "content": "Setup",
+          "status": "final"
+        },
+        {
+          "name": "Heading",
+          "content": "Three steps, about ten minutes",
+          "status": "final"
+        },
+        {
+          "name": "Body Copy",
+          "content": "One admin approval, one connection, one test record.",
+          "status": "final"
+        },
+        {
+          "name": "Step 1 - Heading",
+          "content": "Approve the app",
+          "status": "final"
+        },
+        {
+          "name": "Step 1 - Body",
+          "content": "An Orbit administrator approves Example Co for the workspace.",
+          "status": "final"
+        },
+        {
+          "name": "Step 2 - Heading",
+          "content": "Map your fields",
+          "status": "final"
+        },
+        {
+          "name": "Step 2 - Body",
+          "content": "Accept the suggested mapping or change it. The mapping is saved with the connection, not with the person who made it.",
+          "status": "final"
+        },
+        {
+          "name": "Step 3 - Heading",
+          "content": "Send a test record",
+          "status": "final"
+        },
+        {
+          "name": "Step 3 - Body",
+          "content": "Create one record in Orbit and watch it appear on the Example Co side before you turn the sync on for everyone.",
+          "status": "draft"
+        },
+        {
+          "name": "Id",
+          "content": "setup",
+          "status": "final"
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "familySection": "feature-grid",
+      "designSection": "three-column feature grid",
+      "reuseLevel": "reused",
+      "componentName": "Feature grid",
+      "variant": "icon-top",
+      "layout": {
+        "columns": 3
+      },
+      "slots": [
+        {
+          "name": "Heading",
+          "content": "What the integration covers",
+          "status": "final"
+        },
+        {
+          "name": "Feature 1",
+          "content": "Two-way sync on records, notes, and owners.",
+          "status": "final"
+        },
+        {
+          "name": "Feature 2",
+          "content": "Field mapping you set once and can change later.",
+          "status": "final"
+        },
+        {
+          "name": "Feature 3",
+          "content": "Automatic merge of duplicate records.",
+          "status": "final"
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "familySection": "faq",
+      "designSection": "FAQ",
+      "reuseLevel": "reused",
+      "componentName": "FAQ section",
+      "variant": "default",
+      "slots": [
+        {
+          "name": "Overline",
+          "content": "FAQ",
+          "status": "final"
+        },
+        {
+          "name": "Heading",
+          "content": "Questions people ask first",
+          "status": "final"
+        },
+        {
+          "name": "q1",
+          "content": "How long does the first sync take?",
+          "status": "final"
+        },
+        {
+          "name": "a1",
+          "content": "Minutes for a small workspace, a few hours for a large one. Nothing is written until the first pass finishes.",
+          "status": "final"
+        },
+        {
+          "name": "q2",
+          "content": "Can I sync in one direction only?",
+          "status": "final"
+        },
+        {
+          "name": "a2",
+          "content": "Yes. Choose the direction per object when you map the fields.",
+          "status": "final"
+        },
+        {
+          "name": "q3",
+          "content": "What happens when a record is deleted?",
+          "status": "final"
+        },
+        {
+          "name": "a3",
+          "content": "It is archived on the other side rather than deleted, and can be restored for thirty days.",
+          "status": "final"
+        },
+        {
+          "name": "q4",
+          "content": "Is there a limit on records?",
+          "status": "final"
+        },
+        {
+          "name": "a4",
+          "content": null,
+          "status": "missing"
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "familySection": "cta-band",
+      "designSection": "closing CTA",
+      "reuseLevel": "reused",
+      "componentName": "CTA band",
+      "variant": "dark",
+      "slots": [
+        {
+          "name": "Heading",
+          "content": "Connect Orbit today",
+          "status": "final"
+        },
+        {
+          "name": "Body Copy",
+          "content": "Set it up once for the whole team. Nothing syncs until you say so.",
+          "status": "final"
+        },
+        {
+          "name": "Button Text",
+          "content": "Connect Orbit",
+          "status": "final"
+        },
+        {
+          "name": "Button Link",
+          "content": "page:0000000000000000000000b3",
+          "status": "final"
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "familySection": "footer",
+      "designSection": "footer",
+      "reuseLevel": "reused",
+      "componentName": "Site footer",
+      "variant": "default",
+      "slots": []
+    }
+  ],
+  "tokens": {
+    "substitutions": [
+      {
+        "observed": "#1B4DF5 primary button",
+        "token": "accent/brand",
+        "match": "near"
+      },
+      {
+        "observed": "#101322 dark band background",
+        "token": "surface/sunken",
+        "match": "near"
+      },
+      {
+        "observed": "#F4F6FB section background",
+        "token": "surface/raised",
+        "match": "exact"
+      },
+      {
+        "observed": "heading 48px",
+        "token": "text/strong at the h2 size",
+        "match": "near"
+      }
+    ],
+    "unresolved": [
+      {
+        "observed": "#7A5AF8 accent on the step numbers",
+        "note": "no token this violet; using accent/brand"
+      }
+    ]
+  },
+  "unsupported": [
+    {
+      "item": "Setup step cards lift on hover",
+      "handoff": "Open the page in the Designer, select each `c-setupsteps__li`, add an Interaction: mouse hover, move up 4px, 150 ms, ease-out. The design showed the card lifting on hover."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "question": "Mirror the media layout with an override or a variant?",
+      "status": "resolved",
+      "resolution": "New variant media--right on Media sidebar section; an override would be a one-off nobody can reuse."
+    },
+    {
+      "id": "D2",
+      "question": "Who supplies the record limit for the fourth FAQ answer?",
+      "status": "open",
+      "resolution": null
+    }
+  ],
+  "approvedAt": "2026-01-05T18:30:00Z"
+}

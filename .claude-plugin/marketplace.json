@@ -1,0 +1,14 @@
+{
+  "name": "webflow-template-skill",
+  "owner": {
+    "name": "webflow-template-skill contributors"
+  },
+  "description": "A marketplace carrying one plugin, design-automations, whose webflow-template skill turns a design into an unpublished Webflow draft page built from a reusable template family.",
+  "plugins": [
+    {
+      "name": "design-automations",
+      "source": "./plugins/design-automations",
+      "description": "The webflow-template skill: onboard a Webflow site, then turn a design into an unpublished draft page built from a reusable template family, through an interview and an approved visual outline. Never publishes."
+    }
+  ]
+}

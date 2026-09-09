@@ -1,0 +1,323 @@
+{
+  "site": {
+    "id": "0000000000000000000000a0",
+    "shortName": "example-co"
+  },
+  "family": "product-landing",
+  "familyVersion": "1.1.0",
+  "templateModel": "hybrid",
+  "isolationMode": "draft-main",
+  "sources": [
+    {
+      "type": "claude-design-html",
+      "location": "acme-integration-landing.html (attached)",
+      "observed": [
+        "7 sections: nav, hero, logo bar, 3-column feature grid, comparison table, CTA band, footer",
+        "Primary CTA 'Start free trial' in hero and CTA band",
+        "Colors #0055FF, #0B1F3A, #F5F7FA; font Inter"
+      ],
+      "assumed": [
+        "Hover lift on feature cards is decorative and can be dropped",
+        "Comparison table is static content, not CMS-bound"
+      ]
+    }
+  ],
+  "answers": {
+    "purpose": "Explain the Acme integration to evaluating buyers and get them to start a trial.",
+    "primaryAction": {
+      "label": "Start free trial",
+      "destinationPageId": "0000000000000000000000b3"
+    },
+    "pageIdentity": {
+      "title": "Example Co + Acme integration",
+      "slug": "acme-integration",
+      "folder": "/integrations"
+    },
+    "seo": "family defaults",
+    "shell": "nav and footer included",
+    "sections": "matches the family; comparison table becomes a new section",
+    "contentStatus": "hero and features final; comparison table draft; testimonial quote missing",
+    "images": "hero image by public URL; logos already in the asset library",
+    "forms": "none",
+    "responsive": "nothing unusual",
+    "localization": "English only",
+    "schema": "family default (WebPage)",
+    "launchOwner": "the design team, review within a week",
+    "usedFamilyDefaults": true
+  },
+  "page": {
+    "title": "Example Co + Acme integration",
+    "slug": "acme-integration",
+    "folder": {
+      "path": "/integrations",
+      "id": "0000000000000000000000c2"
+    },
+    "seo": {
+      "title": "Acme integration | Example Co",
+      "description": "Sync records from Example Co into Acme in one click. Start a free trial."
+    },
+    "openGraph": {
+      "title": "Example Co + Acme",
+      "description": "Your records, straight into Acme.",
+      "imageAssetName": "og-integrations-default.png"
+    },
+    "schemaType": "WebPage"
+  },
+  "sections": [
+    {
+      "order": 1,
+      "familySection": "nav",
+      "designSection": "nav",
+      "reuseLevel": "reused",
+      "componentName": "Site nav",
+      "variant": "default",
+      "slots": []
+    },
+    {
+      "order": 2,
+      "familySection": "hero",
+      "designSection": "hero",
+      "reuseLevel": "reused",
+      "componentName": "Hero / Product",
+      "variant": "default",
+      "layout": {
+        "columns": 2,
+        "align": "left"
+      },
+      "slots": [
+        {
+          "name": "heading",
+          "content": "Push records into Acme in one click",
+          "status": "final"
+        },
+        {
+          "name": "subhead",
+          "content": "Example Co keeps the records; the Acme integration puts them where your team already works.",
+          "status": "final"
+        },
+        {
+          "name": "ctaLabel",
+          "content": "Start free trial",
+          "status": "final"
+        },
+        {
+          "name": "ctaLink",
+          "content": "page:0000000000000000000000b3",
+          "status": "final"
+        }
+      ],
+      "images": [
+        {
+          "url": "https://cdn.example.com/acme/hero-1600x900.png",
+          "alt": "An Example Co record list syncing into Acme"
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "familySection": "logo-bar",
+      "designSection": "logo bar",
+      "reuseLevel": "reused",
+      "componentName": "Logo bar",
+      "variant": "default",
+      "layout": {
+        "columns": 6,
+        "breakpoints": {
+          "991": 3,
+          "767": 3,
+          "479": 2
+        }
+      },
+      "slots": [
+        {
+          "name": "caption",
+          "content": "Trusted by revenue teams at",
+          "status": "final"
+        }
+      ],
+      "images": [
+        {
+          "assetName": "logo-customer-a.svg",
+          "alt": "Customer A"
+        },
+        {
+          "assetName": "logo-customer-b.svg",
+          "alt": "Customer B"
+        },
+        {
+          "assetName": "logo-customer-c.svg",
+          "alt": "Customer C"
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "familySection": "feature-grid",
+      "designSection": "3-column feature grid",
+      "reuseLevel": "adapted",
+      "componentName": "Feature grid",
+      "variant": null,
+      "adaptation": {
+        "newVariant": "icon-top"
+      },
+      "layout": {
+        "columns": 3
+      },
+      "slots": [
+        {
+          "name": "heading",
+          "content": "Everything the integration does",
+          "status": "final"
+        },
+        {
+          "name": "feature1",
+          "content": "One-click sync of records and owners.",
+          "status": "final"
+        },
+        {
+          "name": "feature2",
+          "content": "Field mapping you set once.",
+          "status": "final"
+        },
+        {
+          "name": "feature3",
+          "content": "Dedupe against existing Acme records.",
+          "status": "final"
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "familySection": "comparison-grid",
+      "designSection": "comparison table",
+      "reuseLevel": "new",
+      "newComponentSpec": {
+        "name": "Comparison grid",
+        "description": "Two-column feature comparison with check marks; static content.",
+        "structure": [
+          "heading",
+          "grid of rows: label, before, after"
+        ],
+        "props": [
+          "heading",
+          "rows"
+        ]
+      },
+      "layout": {
+        "columns": 2
+      },
+      "slots": [
+        {
+          "name": "heading",
+          "content": "Before and after the integration",
+          "status": "draft"
+        },
+        {
+          "name": "rows",
+          "content": "Manual CSV export vs one-click sync; weekly cleanup vs automatic dedupe",
+          "status": "draft"
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "familySection": "testimonial",
+      "designSection": "quote",
+      "reuseLevel": "reused",
+      "componentName": "Testimonial",
+      "variant": "default",
+      "slots": [
+        {
+          "name": "quote",
+          "content": null,
+          "status": "missing"
+        },
+        {
+          "name": "attribution",
+          "content": null,
+          "status": "missing"
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "familySection": "cta-band",
+      "designSection": "CTA band",
+      "reuseLevel": "reused",
+      "componentName": "CTA band",
+      "variant": "dark",
+      "slots": [
+        {
+          "name": "heading",
+          "content": "Start syncing today",
+          "status": "final"
+        },
+        {
+          "name": "ctaLabel",
+          "content": "Start free trial",
+          "status": "final"
+        },
+        {
+          "name": "ctaLink",
+          "content": "page:0000000000000000000000b3",
+          "status": "final"
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "familySection": "footer",
+      "designSection": "footer",
+      "reuseLevel": "reused",
+      "componentName": "Site footer",
+      "variant": "default",
+      "slots": []
+    }
+  ],
+  "tokens": {
+    "substitutions": [
+      {
+        "observed": "#0055FF",
+        "token": "--color-brand-primary",
+        "match": "near"
+      },
+      {
+        "observed": "#0B1F3A",
+        "token": "--color-ink",
+        "match": "exact"
+      },
+      {
+        "observed": "Inter 600 32px",
+        "token": "--text-h2",
+        "match": "near"
+      }
+    ],
+    "unresolved": [
+      {
+        "observed": "#F5F7FA section background",
+        "note": "no surface token this light; using --color-surface-2"
+      }
+    ]
+  },
+  "unsupported": [
+    {
+      "item": "Hover lift on feature cards",
+      "handoff": "Add an Interaction on hover to the feature card elements: move up 4px, 150 ms, ease-out."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D1",
+      "question": "Who supplies the testimonial quote and attribution?",
+      "status": "open",
+      "resolution": null
+    },
+    {
+      "id": "D2",
+      "question": "Keep the comparison table as a static component or bind it to CMS?",
+      "status": "resolved",
+      "resolution": "Static component; CMS binding deferred to v2."
+    }
+  ],
+  "approvedAt": null
+}

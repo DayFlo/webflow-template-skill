@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}}</title>
+<style>
+  :root { --ink: #1c1c1a; --muted: #5a5a55; --line: #d9d9d4; --paper: #ffffff; --ground: #f6f6f4; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 24px; background: var(--ground); color: var(--ink); }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  h2 { font-size: 16px; margin: 32px 0 8px; }
+  code { font-size: 12px; background: #eeeeea; padding: 1px 4px; border-radius: 3px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .controls { margin-top: 16px; }
+  .controls button { font: inherit; font-size: 12px; padding: 4px 10px; margin-right: 6px; border: 1px solid var(--line); background: var(--paper); border-radius: 4px; cursor: pointer; }
+  .frames { display: grid; grid-template-columns: 1440fr 991fr 767fr 479fr; gap: 12px; margin-top: 12px; align-items: start; }
+  .frame { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 8px; min-width: 0; }
+  .frame h3 { font-size: 12px; margin: 0 0 8px; color: var(--muted); font-weight: 600; }
+  .section { border-top: 1px solid #e6e6e1; padding: 8px 0; overflow-wrap: anywhere; }
+  .section:first-of-type { border-top: 0; }
+  .pill { display: inline-block; font-size: 10px; line-height: 14px; padding: 1px 6px; border-radius: 9px; vertical-align: middle; }
+  .pill-reused, .pill-final { background: #e3f4e8; color: #1d6b35; }
+  .pill-adapted, .pill-draft { background: #fdf1d8; color: #8a5a00; }
+  .pill-new { background: #ece4fb; color: #5a2ea6; }
+  .pill-missing { background: #fbe3e1; color: #a12a22; }
+  .cols { display: grid; gap: 4px; margin: 6px 0; }
+  .col { background: #eeeeea; border: 1px dashed #c8c8c2; height: 26px; border-radius: 3px; }
+  .slot { font-size: 11px; margin: 2px 0; }
+  .slot-content { color: var(--muted); }
+  .bp-767 .slot-content, .bp-479 .slot-content { display: none; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; background: var(--paper); }
+  th, td { border: 1px solid var(--line); padding: 6px 8px; text-align: left; vertical-align: top; }
+  tr.open { background: #fdf1d8; }
+  .hidden { display: none; }
+  footer { margin-top: 32px; font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+{{HEADER}}
+<div class="controls" id="controls"></div>
+<div class="frames" id="frames">{{FRAMES}}</div>
+<h2>Section mapping</h2>
+{{MAPPING}}
+<h2>Decisions</h2>
+{{DECISIONS}}
+<h2>Token substitutions</h2>
+{{TOKENS}}
+<h2>Manual handoff</h2>
+{{HANDOFF}}
+<footer>Generated {{GENERATED_AT}} · brief {{BRIEF_HASH}} · no external assets</footer>
+<script>{{SCRIPT}}</script>
+</body>
+</html>

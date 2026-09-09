@@ -1,0 +1,24 @@
+{
+  "site": {"id": ""},
+  "family": "Product Landing",
+  "familyVersion": "1.1",
+  "templateModel": "clone",
+  "isolationMode": "main",
+  "page": {
+    "title": "",
+    "slug": "Acme_Integration",
+    "folder": {"path": "integrations", "id": null}
+  },
+  "sections": [
+    {"order": 1, "familySection": "hero", "reuseLevel": "reused", "slots": [
+      {"name": "heading", "content": "", "status": "final"},
+      {"name": "", "content": "x", "status": "later"}
+    ], "images": [{"alt": ""}]},
+    {"order": 1, "familySection": "", "reuseLevel": "adapted", "componentName": "1111aaaa-0000-4000-8000-000000000009", "slots": []},
+    {"order": 3, "familySection": "compare", "reuseLevel": "new", "slots": "none"},
+    {"order": "4", "familySection": "cta", "reuseLevel": "copied"}
+  ],
+  "tokens": {"substitutions": [{"observed": "#fff", "token": "--x", "match": "close"}]},
+  "decisions": [{"id": "D1", "question": "?", "status": "pending"}],
+  "approvedAt": 12345
+}

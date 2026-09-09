@@ -1,0 +1,26 @@
+# Codex skill metadata for webflow-template.
+# Layout per the Codex skills documentation (learn.chatgpt.com/docs/build-skills):
+# interface (user-facing name, description, default prompt), policy, dependencies.
+# Install: copy or symlink this skill folder into $HOME/.agents/skills, then
+# invoke with $webflow-template. The MCP server must be registered in
+# ~/.codex/config.toml as [mcp_servers.webflow] with url = "https://mcp.webflow.com/mcp".
+
+interface:
+  display_name: "Webflow template build"
+  short_description: "Turn a design into an unpublished draft page in your Webflow site, built from a reusable template family through an interview and an approved outline. Onboard the site first. Never publishes."
+  default_prompt: "Use $webflow-template. I will hand you a design (Claude Design export, HTML, screenshots, PDF, or a link). Run the build flow: preflight, digest, interview (at most 3 questions per turn), template selection, visual outline for my approval, then build a draft page and report. Do not publish anything."
+
+policy:
+  # The skill runs only when the user names it. Codex must not pick it up from
+  # unrelated design or Webflow conversation.
+  allow_implicit_invocation: false
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "webflow"
+      description: "Webflow MCP server https://mcp.webflow.com/mcp"
+      # transport and url are the documented optional fields for an MCP dependency;
+      # they mirror the [mcp_servers.webflow] block in ~/.codex/config.toml.
+      transport: "streamable_http"
+      url: "https://mcp.webflow.com/mcp"

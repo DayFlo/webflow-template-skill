@@ -1,0 +1,595 @@
+{
+ "capturedAt": "2026-01-05T19:40:00Z",
+ "siteId": "0000000000000000000000a0",
+ "scope": {
+  "styles": "names only (query_styles by substring; properties not read at onboarding), so the guard checks presence and removal for these; a live pre-snapshot stores get_style properties per class",
+  "components": "product-landing family plus the shell (trimmed test fixture)",
+  "variables": "the semantic colour collection (get_variables), values and mode values"
+ },
+ "styles": {
+  "l-section": "names-only",
+  "l-section--header": "names-only",
+  "l-container": "names-only",
+  "l-pad-b--112px": "names-only",
+  "l-pad-b--64px": "names-only",
+  "l-bg--surface-0": "names-only",
+  "l-bg--surface-1": "names-only",
+  "l-bg--surface-2": "names-only",
+  "l-mode--dark": "names-only",
+  "l-overflow--hidden": "names-only",
+  "c-button": "names-only",
+  "c-button__text": "names-only",
+  "c-button__icon": "names-only",
+  "c-setupsteps": "names-only",
+  "c-setupsteps__li": "names-only",
+  "c-setupsteps__li__num": "names-only"
+ },
+ "components": {
+  "1111aaaa-0000-4000-8000-000000000001": {
+   "name": "Site nav",
+   "group": "04. Navigation",
+   "description": null,
+   "props": {
+    "1111aaaa-0000-4000-8000-000000000010": {
+     "name": "Variant",
+     "type": "variant",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000011": {
+     "name": "Class",
+     "type": "string",
+     "group": "Attributes"
+    }
+   },
+   "variants": {
+    "default": "present",
+    "simplified": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-000000000002": {
+   "name": "Site footer",
+   "group": "04. Navigation",
+   "description": null,
+   "props": {
+    "1111aaaa-0000-4000-8000-000000000012": {
+     "name": "Variant",
+     "type": "variant",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000013": {
+     "name": "Class",
+     "type": "string",
+     "group": "Attributes"
+    }
+   },
+   "variants": {
+    "default": "present",
+    "simplified": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-000000000003": {
+   "name": "Hero / Product",
+   "group": "12. Pre-Built Sections",
+   "description": "Product hero: heading, subhead, one CTA, media slot.",
+   "props": {
+    "1111aaaa-0000-4000-8000-000000000014": {
+     "name": "Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000015": {
+     "name": "Subhead",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000016": {
+     "name": "Button Text",
+     "type": "textContent",
+     "group": "Button"
+    },
+    "1111aaaa-0000-4000-8000-000000000017": {
+     "name": "Button Link",
+     "type": "link",
+     "group": "Button"
+    },
+    "1111aaaa-0000-4000-8000-000000000018": {
+     "name": "Id",
+     "type": "string",
+     "group": "Attributes"
+    }
+   },
+   "variants": {
+    "default": "present",
+    "dark": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-000000000004": {
+   "name": "Logo bar",
+   "group": "12. Pre-Built Sections",
+   "description": null,
+   "props": {
+    "1111aaaa-0000-4000-8000-000000000019": {
+     "name": "Caption",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-00000000001a": {
+     "name": "Visibility",
+     "type": "boolean",
+     "group": null
+    }
+   },
+   "variants": {
+    "default": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-000000000005": {
+   "name": "Feature grid",
+   "group": "12. Pre-Built Sections",
+   "description": null,
+   "props": {
+    "1111aaaa-0000-4000-8000-00000000001b": {
+     "name": "Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-00000000001c": {
+     "name": "Feature 1",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-00000000001d": {
+     "name": "Feature 2",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-00000000001e": {
+     "name": "Feature 3",
+     "type": "textContent",
+     "group": null
+    }
+   },
+   "variants": {
+    "default": "present",
+    "icon-top": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-000000000006": {
+   "name": "CTA band",
+   "group": "12. Pre-Built Sections",
+   "description": null,
+   "props": {
+    "1111aaaa-0000-4000-8000-00000000001f": {
+     "name": "Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000020": {
+     "name": "Body Copy",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000021": {
+     "name": "Button Text",
+     "type": "textContent",
+     "group": "Button"
+    },
+    "1111aaaa-0000-4000-8000-000000000022": {
+     "name": "Button Link",
+     "type": "link",
+     "group": "Button"
+    }
+   },
+   "variants": {
+    "default": "present",
+    "dark": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-000000000007": {
+   "name": "FAQ section",
+   "group": "12. Pre-Built Sections",
+   "description": "Question blocks go in the Questions slot.",
+   "props": {
+    "1111aaaa-0000-4000-8000-000000000023": {
+     "name": "Overline",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000024": {
+     "name": "Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000025": {
+     "name": "Button Text",
+     "type": "textContent",
+     "group": "Button"
+    },
+    "1111aaaa-0000-4000-8000-000000000026": {
+     "name": "Button Link",
+     "type": "link",
+     "group": "Button"
+    },
+    "1111aaaa-0000-4000-8000-000000000027": {
+     "name": "Schema",
+     "type": "string",
+     "group": null
+    }
+   },
+   "variants": {
+    "default": "present"
+   },
+   "instanceCount": 46
+  },
+  "1111aaaa-0000-4000-8000-000000000008": {
+   "name": "FAQ question block",
+   "group": "10. Building Blocks",
+   "description": "Dropdown block used in the FAQ section slot.",
+   "props": {
+    "1111aaaa-0000-4000-8000-000000000028": {
+     "name": "Question",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000029": {
+     "name": "Answer",
+     "type": "richText",
+     "group": null
+    }
+   },
+   "variants": {
+    "default": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-000000000009": {
+   "name": "Media sidebar section",
+   "group": "12. Pre-Built Sections",
+   "description": "Media on one side, supporting cards on the other.",
+   "props": {
+    "1111aaaa-0000-4000-8000-00000000002a": {
+     "name": "Media",
+     "type": "string",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-00000000002b": {
+     "name": "Overline",
+     "type": "textContent",
+     "group": "Header"
+    },
+    "1111aaaa-0000-4000-8000-00000000002c": {
+     "name": "Heading",
+     "type": "textContent",
+     "group": "Header"
+    },
+    "1111aaaa-0000-4000-8000-00000000002d": {
+     "name": "Body Copy",
+     "type": "textContent",
+     "group": "Header"
+    },
+    "1111aaaa-0000-4000-8000-00000000002e": {
+     "name": "Card Body",
+     "type": "textContent",
+     "group": "Sidebar"
+    },
+    "1111aaaa-0000-4000-8000-00000000002f": {
+     "name": "Card Button Text",
+     "type": "textContent",
+     "group": "Sidebar"
+    },
+    "1111aaaa-0000-4000-8000-000000000030": {
+     "name": "Card Button Link",
+     "type": "link",
+     "group": "Sidebar"
+    },
+    "1111aaaa-0000-4000-8000-000000000031": {
+     "name": "Id",
+     "type": "string",
+     "group": "Attributes"
+    }
+   },
+   "variants": {
+    "default": "present",
+    "media--right": "present"
+   },
+   "instanceCount": 3
+  },
+  "1111aaaa-0000-4000-8000-00000000000a": {
+   "name": "Two column layout section",
+   "group": "11. Layouts",
+   "description": null,
+   "props": {
+    "1111aaaa-0000-4000-8000-000000000032": {
+     "name": "Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000033": {
+     "name": "Body Copy",
+     "type": "textContent",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000034": {
+     "name": "Ratio",
+     "type": "variant",
+     "group": null
+    }
+   },
+   "variants": {
+    "ratio--1-1": "present",
+    "ratio--1-2": "present",
+    "ratio--2-1": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-00000000000b": {
+   "name": "Video popup",
+   "group": "13. Popups",
+   "description": null,
+   "props": {
+    "1111aaaa-0000-4000-8000-000000000035": {
+     "name": "Visibility",
+     "type": "boolean",
+     "group": null
+    },
+    "1111aaaa-0000-4000-8000-000000000036": {
+     "name": "Video",
+     "type": "string",
+     "group": null
+    }
+   },
+   "variants": {
+    "default": "present"
+   }
+  },
+  "1111aaaa-0000-4000-8000-00000000000c": {
+   "name": "Analytics script",
+   "group": "99. Scripts - Do Not Edit",
+   "description": "Tag container. Placed first inside the body of every page.",
+   "props": {},
+   "variants": {
+    "default": "present"
+   }
+  },
+  "candidate:partner-setup-steps": {
+   "name": "Setup steps section",
+   "group": "product-landing",
+   "description": "product-landing@1.1.0 | candidate | run orbit",
+   "props": {
+    "dry-run-prop-0": {
+     "name": "Overline",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-1": {
+     "name": "Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-2": {
+     "name": "Body Copy",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-3": {
+     "name": "Step 1 - Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-4": {
+     "name": "Step 1 - Body",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-5": {
+     "name": "Step 2 - Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-6": {
+     "name": "Step 2 - Body",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-7": {
+     "name": "Step 3 - Heading",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-8": {
+     "name": "Step 3 - Body",
+     "type": "textContent",
+     "group": null
+    },
+    "dry-run-prop-9": {
+     "name": "Id",
+     "type": "textContent",
+     "group": null
+    }
+   },
+   "variants": {
+    "default": "present"
+   }
+  }
+ },
+ "variables": {
+  "variable-1111aaaa-0000-4000-8000-000000000100": {
+   "name": "surface/base",
+   "type": "Color",
+   "cssName": "--color-surface-base",
+   "collection": "collection-1111aaaa-0000-4000-8000-000000000200",
+   "value": {
+    "id": "variable-1111aaaa-0000-4000-8000-000000000110"
+   },
+   "modeValues": [
+    {
+     "modeId": "base",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000110"
+     }
+    },
+    {
+     "modeId": "mode-1111aaaa-0000-4000-8000-000000000201",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000118"
+     }
+    }
+   ]
+  },
+  "variable-1111aaaa-0000-4000-8000-000000000101": {
+   "name": "surface/raised",
+   "type": "Color",
+   "cssName": "--color-surface-raised",
+   "collection": "collection-1111aaaa-0000-4000-8000-000000000200",
+   "value": {
+    "id": "variable-1111aaaa-0000-4000-8000-000000000111"
+   },
+   "modeValues": [
+    {
+     "modeId": "base",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000111"
+     }
+    },
+    {
+     "modeId": "mode-1111aaaa-0000-4000-8000-000000000201",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000119"
+     }
+    }
+   ]
+  },
+  "variable-1111aaaa-0000-4000-8000-000000000102": {
+   "name": "surface/sunken",
+   "type": "Color",
+   "cssName": "--color-surface-sunken",
+   "collection": "collection-1111aaaa-0000-4000-8000-000000000200",
+   "value": {
+    "id": "variable-1111aaaa-0000-4000-8000-000000000112"
+   },
+   "modeValues": [
+    {
+     "modeId": "base",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000112"
+     }
+    },
+    {
+     "modeId": "mode-1111aaaa-0000-4000-8000-000000000201",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-00000000011a"
+     }
+    }
+   ]
+  },
+  "variable-1111aaaa-0000-4000-8000-000000000103": {
+   "name": "text/strong",
+   "type": "Color",
+   "cssName": "--color-text-strong",
+   "collection": "collection-1111aaaa-0000-4000-8000-000000000200",
+   "value": {
+    "id": "variable-1111aaaa-0000-4000-8000-000000000113"
+   },
+   "modeValues": [
+    {
+     "modeId": "base",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000113"
+     }
+    },
+    {
+     "modeId": "mode-1111aaaa-0000-4000-8000-000000000201",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-00000000011b"
+     }
+    }
+   ]
+  },
+  "variable-1111aaaa-0000-4000-8000-000000000104": {
+   "name": "text/medium",
+   "type": "Color",
+   "cssName": "--color-text-medium",
+   "collection": "collection-1111aaaa-0000-4000-8000-000000000200",
+   "value": {
+    "id": "variable-1111aaaa-0000-4000-8000-000000000114"
+   },
+   "modeValues": [
+    {
+     "modeId": "base",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000114"
+     }
+    },
+    {
+     "modeId": "mode-1111aaaa-0000-4000-8000-000000000201",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-00000000011c"
+     }
+    }
+   ]
+  },
+  "variable-1111aaaa-0000-4000-8000-000000000105": {
+   "name": "text/subtle",
+   "type": "Color",
+   "cssName": "--color-text-subtle",
+   "collection": "collection-1111aaaa-0000-4000-8000-000000000200",
+   "value": {
+    "id": "variable-1111aaaa-0000-4000-8000-000000000115"
+   },
+   "modeValues": [
+    {
+     "modeId": "base",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000115"
+     }
+    },
+    {
+     "modeId": "mode-1111aaaa-0000-4000-8000-000000000201",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-00000000011d"
+     }
+    }
+   ]
+  },
+  "variable-1111aaaa-0000-4000-8000-000000000106": {
+   "name": "accent/brand",
+   "type": "Color",
+   "cssName": "--color-accent-brand",
+   "collection": "collection-1111aaaa-0000-4000-8000-000000000200",
+   "value": {
+    "id": "variable-1111aaaa-0000-4000-8000-000000000116"
+   },
+   "modeValues": [
+    {
+     "modeId": "base",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-000000000116"
+     }
+    },
+    {
+     "modeId": "mode-1111aaaa-0000-4000-8000-000000000201",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-00000000011e"
+     }
+    }
+   ]
+  },
+  "variable-1111aaaa-0000-4000-8000-000000000107": {
+   "name": "accent/warning",
+   "type": "Color",
+   "cssName": "--color-accent-warning",
+   "collection": "collection-1111aaaa-0000-4000-8000-000000000200",
+   "value": "#b26a00",
+   "modeValues": [
+    {
+     "modeId": "base",
+     "value": "#b26a00"
+    },
+    {
+     "modeId": "mode-1111aaaa-0000-4000-8000-000000000201",
+     "value": {
+      "id": "variable-1111aaaa-0000-4000-8000-00000000011f"
+     }
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,9 @@
+.DS_Store
+__pycache__/
+
+# Bulk read-only captures of a Webflow site. Regenerable by flows/onboard.md
+# step 3 and by the guard's pre/post snapshot step; a complete map of a site,
+# so it stays out of git.
+plugins/design-automations/skills/webflow-template/references/site-inventory.json
+plugins/design-automations/skills/webflow-template/references/site-inventory.md
+plugins/design-automations/skills/webflow-template/references/runs/*.snapshot.json

@@ -1,0 +1,1 @@
+[{"type": "text", "text": "{\"label\": \"x\", \"action\": \"query_styles\", \"error\": {\"status\": 429, \"message\": \"Too Many Requests\"}}"}]

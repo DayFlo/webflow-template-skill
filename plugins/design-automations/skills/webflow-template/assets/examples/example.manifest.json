@@ -1,0 +1,353 @@
+{
+  "runId": "2026-01-05-orbit",
+  "slug": "orbit",
+  "startedAt": "2026-01-05T18:35:00Z",
+  "surface": "claude-code",
+  "site": {
+    "id": "0000000000000000000000a0",
+    "shortName": "example-co"
+  },
+  "family": "product-landing",
+  "familyVersion": "1.1.0",
+  "templateModel": "hybrid",
+  "isolationMode": "draft-main",
+  "briefHash": "sha256:5348ecb5cdfd8d7d69d348326583653510e90f140a1a5297566b6828afafc6ab",
+  "steps": [
+    {
+      "seq": 1,
+      "at": "2026-01-05T18:36:00Z",
+      "tool": "data_agent_instructions_tool",
+      "action": "create_instruction",
+      "ids": {
+        "instructionPaths": [
+          "page-templates/runs/2026-01-05-orbit.md"
+        ],
+        "isDraft": true
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Run record opened before the first write."
+    },
+    {
+      "seq": 2,
+      "at": "2026-01-05T18:37:00Z",
+      "tool": "data_component_tool",
+      "action": "query_components",
+      "ids": {
+        "keywords": "12. Pre-Built Sections",
+        "limit": 40
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Phase 3 reconcile: one group-filtered call resolves the family's component names to ids."
+    },
+    {
+      "seq": 3,
+      "at": "2026-01-05T18:38:00Z",
+      "tool": "data_pages_tool",
+      "action": "create_page",
+      "ids": {
+        "duplicateOf": "0000000000000000000000b1",
+        "parentFolderId": "0000000000000000000000c2",
+        "slug": "orbit",
+        "title": "Example Co + Orbit",
+        "draft": true
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. seo and openGraph from the brief."
+    },
+    {
+      "seq": 4,
+      "at": "2026-01-05T18:39:00Z",
+      "tool": "data_pages_tool",
+      "action": "get_page_metadata",
+      "ids": {
+        "pageId": "<created pageId>"
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Readback gate: draft: true."
+    },
+    {
+      "seq": 5,
+      "at": "2026-01-05T18:40:00Z",
+      "tool": "data_element_tool",
+      "action": "get_all_elements",
+      "ids": {
+        "pageId": "<created pageId>",
+        "depth": 2
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. One depth-limited call, serialized; map the copied sections onto the catalog rows."
+    },
+    {
+      "seq": 6,
+      "at": "2026-01-05T18:41:00Z",
+      "tool": "data_component_props_tool",
+      "action": "set_component_instance_prop_values",
+      "ids": {
+        "pageId": "<created pageId>",
+        "componentId": "1111aaaa-0000-4000-8000-000000000003",
+        "elementId": "<copied hero instance>"
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Hero props."
+    },
+    {
+      "seq": 7,
+      "at": "2026-01-05T18:42:00Z",
+      "tool": "asset_tool",
+      "action": "upload_image_by_url",
+      "ids": {
+        "url": "https://cdn.example.com/orbit/hero-1600x900.png",
+        "assetIds": []
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Hero image; alt text set with the prop."
+    },
+    {
+      "seq": 8,
+      "at": "2026-01-05T18:43:00Z",
+      "tool": "data_component_variants_tool",
+      "action": "create_variant",
+      "ids": {
+        "componentId": "1111aaaa-0000-4000-8000-000000000009",
+        "name": "media--right"
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Adapted section: a new variant on a pre-existing component; the base variant is never edited."
+    },
+    {
+      "seq": 9,
+      "at": "2026-01-05T18:44:00Z",
+      "tool": "data_component_variants_tool",
+      "action": "set_variant_styles",
+      "ids": {
+        "componentId": "1111aaaa-0000-4000-8000-000000000009",
+        "variant": "media--right",
+        "styles": {
+          "row": {
+            "flex-direction": "row-reverse"
+          }
+        }
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Mirror the layout; styles only."
+    },
+    {
+      "seq": 10,
+      "at": "2026-01-05T18:45:00Z",
+      "tool": "data_component_props_tool",
+      "action": "set_component_instance_prop_values",
+      "ids": {
+        "pageId": "<created pageId>",
+        "componentId": "1111aaaa-0000-4000-8000-000000000009",
+        "elementId": "<copied media sidebar instance>",
+        "variant": "media--right",
+        "props": 8
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Switch the copied instance to the new variant and set its props."
+    },
+    {
+      "seq": 11,
+      "at": "2026-01-05T18:46:00Z",
+      "tool": "data_element_settings_tool",
+      "action": "set_text",
+      "ids": {
+        "pageId": "<created pageId>",
+        "masterSection": 4,
+        "nodes": [
+          "Heading"
+        ]
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. benefit-a heading; the body slot is marked manual in the brief and goes to the publisher."
+    },
+    {
+      "seq": 12,
+      "at": "2026-01-05T18:47:00Z",
+      "tool": "data_style_tool",
+      "action": "create_style",
+      "ids": {
+        "styleNames": [
+          "c-setupsteps",
+          "c-setupsteps__li",
+          "c-setupsteps__li__num"
+        ]
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. New section: styles before the elements that use them, with the site's own prefix."
+    },
+    {
+      "seq": 13,
+      "at": "2026-01-05T18:48:00Z",
+      "tool": "data_component_tool",
+      "action": "create_blank_component",
+      "ids": {
+        "componentIds": [
+          "candidate:partner-setup-steps"
+        ],
+        "name": "Setup steps section",
+        "group": "product-landing",
+        "description": "product-landing@1.1.0 | candidate | run orbit"
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. New section component; a live run replaces the placeholder with the id Webflow returns."
+    },
+    {
+      "seq": 14,
+      "at": "2026-01-05T18:49:00Z",
+      "tool": "data_element_builder",
+      "action": "build",
+      "ids": {
+        "componentId": "candidate:partner-setup-steps",
+        "root": "section.l-section.l-bg--surface-2 > div.l-container",
+        "children": [
+          "header (Overline, Heading, Body Copy)",
+          "ol.c-setupsteps with three li.c-setupsteps__li"
+        ]
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Build inside the component with the element builder; expose the ten props from newComponentSpec.props."
+    },
+    {
+      "seq": 15,
+      "at": "2026-01-05T18:50:00Z",
+      "tool": "data_component_builder",
+      "action": "insert_component_instance",
+      "ids": {
+        "pageId": "<created pageId>",
+        "componentId": "candidate:partner-setup-steps",
+        "parentElementId": "<main>",
+        "position": "after masterSection 4"
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Insert the new section between benefit-a and the feature grid."
+    },
+    {
+      "seq": 16,
+      "at": "2026-01-05T18:51:00Z",
+      "tool": "data_component_props_tool",
+      "action": "set_component_instance_prop_values",
+      "ids": {
+        "pageId": "<created pageId>",
+        "componentId": "candidate:partner-setup-steps",
+        "elementId": "<inserted setup-steps instance>"
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Setup steps content; step 3 carries a draft value."
+    },
+    {
+      "seq": 17,
+      "at": "2026-01-05T18:52:00Z",
+      "tool": "data_component_props_tool",
+      "action": "set_component_instance_prop_values",
+      "ids": {
+        "pageId": "<created pageId>",
+        "componentId": "1111aaaa-0000-4000-8000-000000000007",
+        "elementId": "<copied FAQ instance>"
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. FAQ section props."
+    },
+    {
+      "seq": 18,
+      "at": "2026-01-05T18:53:00Z",
+      "tool": "data_component_props_tool",
+      "action": "set_component_instance_prop_values",
+      "ids": {
+        "pageId": "<created pageId>",
+        "componentId": "1111aaaa-0000-4000-8000-000000000008",
+        "instances": 4
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Four FAQ question blocks; a4 is missing and gets a visible TODO placeholder."
+    },
+    {
+      "seq": 19,
+      "at": "2026-01-05T18:54:00Z",
+      "tool": "data_component_props_tool",
+      "action": "set_component_instance_prop_values",
+      "ids": {
+        "pageId": "<created pageId>",
+        "componentId": "1111aaaa-0000-4000-8000-000000000006",
+        "elementId": "<copied CTA band instance>"
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. CTA band props."
+    },
+    {
+      "seq": 20,
+      "at": "2026-01-05T18:55:00Z",
+      "tool": "data_pages_tool",
+      "action": "bulk_update_pages_schema_markup",
+      "ids": {
+        "pageId": "<created pageId>",
+        "type": "WebPage",
+        "plusFaqPage": true
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. JSON-LD from the family template."
+    },
+    {
+      "seq": 21,
+      "at": "2026-01-05T18:56:00Z",
+      "tool": "data_agent_instructions_tool",
+      "action": "create_instruction",
+      "ids": {
+        "instructionPaths": [
+          "page-templates/candidates/partner-setup-steps.md"
+        ],
+        "isDraft": true
+      },
+      "status": "skipped",
+      "note": "dry-run: not executed. Candidate record for the new component and the new variant."
+    }
+  ],
+  "created": {
+    "pageId": null,
+    "branchId": null,
+    "componentIds": [],
+    "styleNames": [],
+    "variableIds": [],
+    "assetIds": [],
+    "instructionPaths": []
+  },
+  "preSnapshotHash": "sha256:64a190a9537e3078a07a643c8c13de1774eb6f739c8d4394f8685f1560d85557",
+  "postSnapshotHash": "sha256:27947b93da207a06892d0450d38502d0ba5ada61c4e934c00de96ae8c348d061",
+  "guardVerdict": {
+    "verdict": "pass",
+    "changedPreExisting": [],
+    "created": [
+      {
+        "kind": "styles",
+        "key": "c-setupsteps"
+      },
+      {
+        "kind": "styles",
+        "key": "c-setupsteps__li"
+      },
+      {
+        "kind": "styles",
+        "key": "c-setupsteps__li__num"
+      },
+      {
+        "kind": "variant",
+        "key": "1111aaaa-0000-4000-8000-000000000009/media--right"
+      },
+      {
+        "kind": "components",
+        "key": "candidate:partner-setup-steps"
+      }
+    ],
+    "removed": [],
+    "acceptedDeviations": [],
+    "counts": {
+      "changedPreExisting": 0,
+      "created": 5,
+      "removed": 0,
+      "accepted": 0
+    }
+  },
+  "acceptedDeviations": [],
+  "publishActions": [],
+  "status": "open"
+}
