@@ -48,9 +48,10 @@ First public release.
 
 ### Changed
 
-- README: install first, then onboarding, then the public-exposure table.
-  Agent Instructions and CMS items sit in that table instead of a trailing
-  essay. British "Licence" heading is now "License".
+- README: short pitch then install, usage, onboarding, the public-exposure
+  table, and a safety list that does not repeat the table. Dropped the
+  verified/not-verified essay (one line under Development). Plugin folder
+  now has its own `plugins/design-automations/README.md`.
 
 ### Notes
 
