@@ -10,7 +10,7 @@ description: >-
   catalog is generated per site), maintain the template catalog, sync the
   catalog to Webflow Agent Instructions, resume or clean up an interrupted run.
   Never publishes. Runs only when the user asks for it by name
-  (/design-automations:webflow-template in Claude Code, "webflow-template"
+  (/temperage:webflow-template in Claude Code, "webflow-template"
   selected in Claude.ai, $webflow-template in Codex). Do not activate it for
   general design or Webflow conversation.
 license: MIT. See LICENSE
@@ -72,7 +72,7 @@ repository" in `flows/maintain.md`.
 | Surface | How it is invoked | Webflow access | Scripts | Persistence |
 | --- | --- | --- | --- | --- |
 | Claude.ai | User selects "webflow-template" by name | First-party Webflow connector (OAuth per user) | Code execution sandbox, Python only if enabled | **No repo, and none needed.** Onboarding writes the catalog, the filled conventions, and the index into Webflow Agent Instructions under `<prefix>`, and hands over the same content as a download bundle; briefs, run records, and candidates go to the store as drafts and are offered as downloads too |
-| Claude Code | `/design-automations:webflow-template` (plugin skills are namespaced; the bare form only applies to a copy in `.claude/skills`) | Plugin `.mcp.json` (`https://mcp.webflow.com/mcp`) or the project's MCP | Local `python3` | Repo and Webflow, with a pull request as the review step; the reviewed path |
+| Claude Code | `/temperage:webflow-template` (plugin skills are namespaced; the bare form only applies to a copy in `.claude/skills`) | Plugin `.mcp.json` (`https://mcp.webflow.com/mcp`) or the project's MCP | Local `python3` | Repo and Webflow, with a pull request as the review step; the reviewed path |
 | Codex | `$webflow-template` | `[mcp_servers.webflow]` in `~/.codex/config.toml` | Local `python3` | Repo and Webflow |
 
 Submitters on Claude.ai are often non-technical. Ask short questions, at most

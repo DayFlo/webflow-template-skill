@@ -35,7 +35,7 @@ import sys
 EXPECTED_URL = "https://mcp.webflow.com/mcp"
 EXPECTED_VERSION = "1.0.0"
 EXPECTED_SKILL = "webflow-template"
-EXPECTED_PLUGIN = "design-automations"
+EXPECTED_PLUGIN = "temperage"
 EXPECTED_MARKET = "webflow-template-skill"
 
 QUOTES = ('"', "'")

@@ -1,0 +1,9 @@
+{
+  "name": "temperage",
+  "description": "Turns a design into an unpublished draft page in a Webflow site, brought to the site's existing template family: onboard, interview, approve a visual outline, build, never publish. Skill: webflow-template (/temperage:webflow-template in Claude Code, selected by name in Claude.ai, $webflow-template in Codex). Ships .mcp.json for the Webflow MCP server.",
+  "version": "1.0.0",
+  "homepage": "https://github.com/DayFlo/webflow-template-skill",
+  "author": {
+    "name": "temperage contributors"
+  }
+}

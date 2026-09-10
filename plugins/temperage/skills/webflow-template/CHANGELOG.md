@@ -47,6 +47,11 @@ at onboarding.
   tracking) recorded on the manifest; link extras match the measured site
   convention only; missing tracking is Designer handoff, never a silent create.
 
+### Changed
+
+- Plugin namespace is `temperage`. Invoke `/temperage:webflow-template`. The
+  skill name is still `webflow-template`.
+
 ### Known limitations
 
 - **The catalog ships empty.** Nothing works end to end until

@@ -1,4 +1,4 @@
-# design-automations
+# temperage
 
 Claude Code plugin. One skill: **webflow-template**. Turns a design into an
 unpublished draft page in a Webflow site, built from a reusable template family.
@@ -10,13 +10,13 @@ From the marketplace root:
 
 ```
 /plugin marketplace add DayFlo/webflow-template-skill
-/plugin install design-automations@webflow-template-skill
+/plugin install temperage@webflow-template-skill
 ```
 
 ## Usage
 
 ```
-/design-automations:webflow-template
+/temperage:webflow-template
 ```
 
 Ask for a flow by name: onboard, build, maintain, sync, or resume. Onboard a
@@ -28,7 +28,7 @@ the public-exposure table, and the full rulebook.
 ## Structure
 
 ```
-design-automations/
+temperage/
 ├── .claude-plugin/
 │   └── plugin.json
 ├── .mcp.json                  # Webflow MCP server

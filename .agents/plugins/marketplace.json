@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "design-automations",
+      "name": "temperage",
       "source": {
         "source": "local",
-        "path": "./plugins/design-automations"
+        "path": "./plugins/temperage"
       },
       "policy": {
         "installation": "AVAILABLE",

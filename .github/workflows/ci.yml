@@ -15,7 +15,7 @@ jobs:
       run:
         shell: bash
     env:
-      SKILL: plugins/design-automations/skills/webflow-template
+      SKILL: plugins/temperage/skills/webflow-template
     steps:
       - uses: actions/checkout@v5
 

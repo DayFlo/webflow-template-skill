@@ -14,10 +14,10 @@ import unittest
 
 from _paths import SKILL_DIR
 
-# SKILL_DIR is <root>/plugins/design-automations/skills/webflow-template
+# SKILL_DIR is <root>/plugins/temperage/skills/webflow-template
 REPO_ROOT = os.path.abspath(os.path.join(SKILL_DIR, "..", "..", "..", ".."))
 CHECKER = os.path.join(REPO_ROOT, "checks", "repo_check.py")
-SKILL_REL = os.path.join("plugins", "design-automations", "skills", "webflow-template")
+SKILL_REL = os.path.join("plugins", "temperage", "skills", "webflow-template")
 
 
 def load_checker():

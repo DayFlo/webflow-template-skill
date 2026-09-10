@@ -1,9 +1,9 @@
 # Changelog
 
 Notable changes to this repository: the marketplace root, the
-`design-automations` plugin, and the checks. The `webflow-template` skill keeps
+`temperage` plugin, and the checks. The `webflow-template` skill keeps
 its own changelog at
-`plugins/design-automations/skills/webflow-template/CHANGELOG.md`, and that is
+`plugins/temperage/skills/webflow-template/CHANGELOG.md`, and that is
 the version `SKILL.md` mirrors.
 
 The format follows Keep a Changelog; versions follow semver.
@@ -17,10 +17,9 @@ First public release.
 - Marketplace root: `.claude-plugin/marketplace.json` for Claude Code and
   `.agents/plugins/marketplace.json` for Codex, both named
   `webflow-template-skill`.
-- The `design-automations` plugin at `plugins/design-automations`, carrying the
-  `webflow-template` skill and a `.mcp.json` for the Webflow MCP server. The
-  plugin name is kept so the invocation is
-  `/design-automations:webflow-template`.
+- The `temperage` plugin at `plugins/temperage`, carrying the
+  `webflow-template` skill and a `.mcp.json` for the Webflow MCP server.
+  Invoke `/temperage:webflow-template`.
 - `checks/repo_check.py`, run by the `checks/repo-check.sh` wrapper: manifests
   parse and carry the keys Claude Code and Codex need; the documented command
   form is the namespaced one; the skill version matches its changelog; the
@@ -48,10 +47,12 @@ First public release.
 
 ### Changed
 
+- Plugin renamed from `design-automations` to `temperage`. Folder is
+  `plugins/temperage`. Invoke is `/temperage:webflow-template`.
 - README: short pitch then install, usage, onboarding, the public-exposure
   table, and a safety list that does not repeat the table. Dropped the
   verified/not-verified essay (one line under Development). Plugin folder
-  now has its own `plugins/design-automations/README.md`.
+  now has its own `plugins/temperage/README.md`.
 
 ### Notes
 

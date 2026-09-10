@@ -1,11 +1,11 @@
-# webflow-template
+# temperage
 
 Turns a design into an **unpublished draft page** in a Webflow site, built
 from a reusable template family: the components, styles, variables, and
 layout conventions the site already has. Never publishes.
 
 This repository is a plugin marketplace. One plugin,
-`design-automations`, carries the skill. Claude Code and Codex install
+`temperage`, carries the `webflow-template` skill. Claude Code and Codex install
 from the repo. Claude.ai does not: zip the skill folder and upload it.
 After that, the catalog lives in Webflow, not git.
 
@@ -23,10 +23,10 @@ verify by readback → report and hand off.
 
 ```
 /plugin marketplace add DayFlo/webflow-template-skill
-/plugin install design-automations@webflow-template-skill
+/plugin install temperage@webflow-template-skill
 ```
 
-Invoke: `/design-automations:webflow-template`. Plugin skills are
+Invoke: `/temperage:webflow-template`. Plugin skills are
 namespaced. The unqualified form works only for a copy in
 `.claude/skills`. The skill will not auto-fire
 (`disable-model-invocation: true`).
@@ -39,7 +39,7 @@ Claude Code prompts for the Webflow OAuth flow on first use.
 Copy or symlink the skill folder into the Codex user skills directory:
 
 ```
-ln -s "$PWD/plugins/design-automations/skills/webflow-template" "$HOME/.agents/skills/webflow-template"
+ln -s "$PWD/plugins/temperage/skills/webflow-template" "$HOME/.agents/skills/webflow-template"
 ```
 
 Register the MCP server in `~/.codex/config.toml`:
@@ -58,7 +58,7 @@ Zip the skill folder (not the marketplace root) and upload it, or have a
 Team / Enterprise owner provision it.
 
 ```
-cd plugins/design-automations/skills
+cd plugins/temperage/skills
 zip -r webflow-template.zip webflow-template
 ```
 
@@ -86,7 +86,7 @@ or **resume**.
 
 | Surface | Invoke |
 | --- | --- |
-| Claude Code | `/design-automations:webflow-template` |
+| Claude Code | `/temperage:webflow-template` |
 | Codex | `$webflow-template` |
 | Claude.ai | select **webflow-template** by name |
 
@@ -111,7 +111,7 @@ before each write, keep proposed families as drafts until a maintainer
 confirms them, and treat the bundle as the only history.
 
 A worked example for a fictional site lives under
-`plugins/design-automations/skills/webflow-template/references/examples/`
+`plugins/temperage/skills/webflow-template/references/examples/`
 and `.../assets/examples/`. Onboarding does not touch it.
 
 ## What this can and cannot make public
@@ -149,7 +149,7 @@ The table above is the publish story. These are the rest:
   written to a file, a manifest, a run record, or a commit.
 
 The full rulebook is
-`plugins/design-automations/skills/webflow-template/references/rules.md`
+`plugins/temperage/skills/webflow-template/references/rules.md`
 (19 rules). It is installed into the site's Agent Instructions so every
 other agent connected to the site reads the same rules.
 
@@ -166,7 +166,7 @@ other agent connected to the site reads the same rules.
 .claude-plugin/marketplace.json        Claude Code marketplace manifest
 .agents/plugins/marketplace.json       Codex marketplace manifest
 checks/repo-check.sh                   structure + disclosure checks
-plugins/design-automations/
+plugins/temperage/
   .claude-plugin/plugin.json
   .mcp.json                            Webflow MCP server
   skills/webflow-template/
@@ -177,7 +177,7 @@ plugins/design-automations/
 ```
 
 ```
-cd plugins/design-automations/skills/webflow-template/scripts
+cd plugins/temperage/skills/webflow-template/scripts
 python3 -m unittest discover -s tests
 ```
 

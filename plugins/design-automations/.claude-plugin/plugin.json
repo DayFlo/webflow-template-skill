@@ -1,8 +1,0 @@
-{
-  "name": "design-automations",
-  "description": "Explicitly-invoked design automations. One skill: webflow-template (/design-automations:webflow-template in Claude Code, selected by name in Claude.ai, $webflow-template in Codex) onboards a Webflow site and then turns a design into an unpublished draft page built from a reusable template family, through an interview and an approved visual outline, and never publishes. Ships .mcp.json for the Webflow MCP server.",
-  "version": "1.0.0",
-  "author": {
-    "name": "webflow-template-skill contributors"
-  }
-}
