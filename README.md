@@ -106,6 +106,11 @@ for Claude Code
 - `.agents/plugins/marketplace.json` for Codex
 - one plugin directory, `plugins/design-automations`, containing the skill
 
+Claude Code and Codex install from this repository. Claude.ai does not: a
+maintainer zips the skill folder and someone uploads that zip (or a Team or
+Enterprise owner provisions it). After that, the catalog lives in Webflow, not
+git.
+
 ### Claude Code
 
 ```
@@ -141,10 +146,44 @@ unrelated conversation.
 
 ### Claude.ai
 
-Distribute the plugin through your organization's plugin settings, connect the
-first-party Webflow connector, and select "webflow-template" by name. Python
-scripts only run there if code execution is enabled; every script has a written
-fallback procedure the skill follows by hand when it is not.
+Claude.ai never clones this repository. Someone who has the repo zips the
+skill folder (not the marketplace root) and either sends that zip or has a
+Team/Enterprise owner provision it. After that, nobody needs GitHub: the
+catalog lives in Webflow Agent Instructions.
+
+**Make the zip** (once per release, by someone with the repo):
+
+```
+cd plugins/design-automations/skills
+zip -r webflow-template.zip webflow-template
+```
+
+The archive must contain the `webflow-template/` directory as its root. Claude.ai
+rejects a zip whose folder name does not match the skill name. Send the zip.
+Do not send the GitHub URL; if the repository is private, it will not help.
+
+**Install** (each person, or once for the organization):
+
+1. Paid Claude (Pro, Max, Team, or Enterprise). Turn on **Code execution and
+   file creation**:
+   - Pro/Max: **Settings → Capabilities**
+   - Team/Enterprise: the owner enables both **Code execution and file
+     creation** and **Skills** under **Organization settings → Skills**
+2. **Customize → Skills**. If an owner already provisioned the skill, toggle
+   **webflow-template** on. Otherwise: **+** → **+ Create skill** → **Upload a
+   skill** → that zip.
+3. Team/Enterprise owners can skip the per-user upload: **Organization
+   settings → Skills → + Add** and upload the same zip. It then appears for
+   everyone.
+4. Connect the first-party Webflow connector: in a chat, **+** →
+   **Connectors** → **Webflow**, complete OAuth, pick the site. The
+   `agent_instructions:read` and `agent_instructions:write` scopes are what
+   let the catalog live in Webflow; a workspace admin grants those.
+5. Start a chat and **select "webflow-template" by name**. The skill will not
+   auto-fire (`disable-model-invocation: true`).
+
+Python scripts only run there if code execution is enabled; every script has a
+written fallback procedure the skill follows by hand when it is not.
 
 The whole story on claude.ai, end to end, with no repository and no git:
 
@@ -173,7 +212,7 @@ Being honest about this matters more than the feature list.
 
 **Verified in this repository, offline:**
 
-- The six Python scripts do what their specs say. 96 unit tests cover brief
+- The six Python scripts do what their specs say. 118 unit tests cover brief
   validation, outline rendering, the inventory guard, catalog linting, the run
   manifest, and snapshot building, plus a skill-tree test that checks every
   path the docs point at exists, that the SKILL.md and CHANGELOG versions agree,
@@ -187,6 +226,12 @@ Being honest about this matters more than the feature list.
   validate` accepts both the marketplace root and the plugin directory.
 - Nothing in the tree carries a credential-shaped string or an identifier
   outside the synthetic set (same script).
+
+**Verified on each live build (Phase 6):** the normative checklist — outline
+match, family rules, CTA, SEO, guard, and tracking — filled from live reads,
+not from intent. Tracking gaps (missing UTMs, missing custom attributes, a
+missing analytics shell the family already names) are Designer handoff work.
+The skill does not invent click events or wire a new tracking scheme.
 
 **Not verified, and stated as such wherever it matters:**
 

@@ -25,9 +25,22 @@ Measured by a read-only onboarding pass on 2026-01-04 and confirmed on
 | Example Co Website | `0000000000000000000000a0` | `example-co` | Marketing site: products, integrations, pricing | `example.com` | Humans publish, in Webflow. The skill never publishes. |
 
 Locale: one primary locale, English, localization not enabled, no secondary
-locales. Site-level scripts: `get_site_scripts` returned nothing; tracking is
-delivered by the `Analytics script` component placed first inside the body of
-every page.
+locales.
+
+## Site-level tracking
+
+`get_site_scripts` returned nothing: no registered script is applied site-wide.
+
+| Question | Answer | Measured |
+| --- | --- | --- |
+| Delivery — how tracking reaches a page | A named shell component: `Analytics script`, placed first inside the body of every page and named in the Product landing shell row | 2026-01-04 |
+| Link extras the MCP can see on existing CTAs | UTM keys: `utm_source`, `utm_medium`, `utm_campaign` on outbound CTAs only; internal CTAs carry no extras and no custom attribute | 2026-01-04 |
+| Sibling CTA the answer was read on | "Start free trial" in the `CTA band` on `/products/orbit` — `href` `https://app.example.com/signup?utm_source=example-co&utm_medium=site&utm_campaign=orbit` | 2026-01-04 |
+
+Whether the `Analytics script` component fires anything on click is not
+readable through MCP and was not guessed at. A build matches the three UTM keys
+on an outbound CTA, writes internal destinations bare, and hands anything else
+to the publisher.
 
 ## Class naming
 
@@ -195,6 +208,7 @@ depends on.
 | 2026-01-04 | `webflow_guide_tool` (once) | tool list read |
 | 2026-01-04 | `data_sites_tool > list_sites`, `get_site` | one site, primary locale only |
 | 2026-01-04 | `data_component_tool > get_all_components` with all three include flags | 200, 12 components, names unique |
+| 2026-01-04 | `data_scripts_tool > get_site_scripts`, then CTA links on the exemplar pages | no site-wide scripts; `Analytics script` component; three UTM keys on outbound CTAs |
 | 2026-01-04 | `data_pages_tool > list_branches` | 200, branching available |
 | 2026-01-04 | `data_agent_instructions_tool > search_instructions` | 200, no hits |
 | 2026-01-05 | `designer_tool > get_current_page`, `get_all_breakpoints` | reachable; four breakpoints |

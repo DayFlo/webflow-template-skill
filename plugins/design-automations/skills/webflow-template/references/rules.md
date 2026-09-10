@@ -125,7 +125,13 @@ the site through the Webflow MCP server.
     external links well-formed.
 14. No site scripts, no page scripts, and no custom code beyond what the
     approved outline lists. Tracking stays in whatever site-wide container the
-    site already uses.
+    site already uses. Link destinations and targets are copied from the brief;
+    link **extras** are copied only where they are the convention the rest of
+    the site already uses — the same UTM keys, the same custom attribute name,
+    the analytics component the family already names (`webflow-conventions.md`,
+    "Site-level tracking"). Never add a new tracking scheme. A deviation from
+    that convention needs explicit user consent in the same turn; without it
+    the link goes on the handoff list instead.
 15. Credentials never reach a file. The Bridge App launch link returned by a
     failed `designer_tool` call carries an app token, is tied to the connected
     Webflow account, and differs per operator; use it inside the run and never

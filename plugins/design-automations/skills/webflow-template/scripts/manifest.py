@@ -5,7 +5,8 @@ Subcommands:
     create     write a new manifest (references/manifest-schema.md)
     append     append a step; ids of executed steps (ok, failed) merge into "created",
                skipped steps (dry run, or already done on resume) record nothing
-    set        update status, guard verdict, snapshot hashes, accepted deviations
+    set        update status, guard verdict, snapshot hashes, accepted deviations,
+               the Phase 6 normative checklist
     summarize  print a JSON summary
     ships      print the ships-at-next-publish and already-public lists
 
@@ -27,6 +28,8 @@ TEMPLATE_MODELS = ("duplicate-master", "component-recipe", "hybrid")
 ISOLATION_MODES = ("draft-main", "branch")
 STATUSES = ("open", "verified", "failed", "cleaned")
 STEP_STATUSES = ("ok", "failed", "skipped")
+CHECKLIST_IDS = ("outline-match", "family-rules", "cta", "seo", "guard", "tracking")
+CHECKLIST_VERDICTS = ("pass", "warn", "fail", "handoff")
 SCALAR_IDS = ("pageId", "branchId")
 LIST_IDS = ("componentIds", "styleNames", "variableIds", "assetIds", "instructionPaths")
 REQUIRED_KEYS = ("runId", "slug", "startedAt", "surface", "site", "family", "familyVersion", "templateModel", "isolationMode", "briefHash", "steps", "created", "status")
@@ -72,6 +75,7 @@ def create(*, slug: str, surface: str, site_id: str, family: str, family_version
         "preSnapshotHash": None,
         "postSnapshotHash": None,
         "guardVerdict": None,
+        "normativeChecklist": None,
         "acceptedDeviations": [],
         "publishActions": [],
         "status": "open",
@@ -140,8 +144,50 @@ def append(manifest: dict[str, Any], *, tool: str, action: str, status: str = "o
     return step, violations
 
 
+def normative_checklist(rows: Any) -> list[dict[str, Any]]:
+    """Validate the Phase 6 table and return it in the Phase 6 row order.
+
+    All six rows, each id once, evidence on every row (a verdict with no
+    readback is not a verdict), a handoff note on every handoff row. A
+    `tracking` row may not be `fail`: missing link extras are the publisher's
+    work, never a failed run (references/rules.md rule 14).
+    """
+    if not isinstance(rows, list):
+        raise ValueError("normative checklist must be a JSON array of rows")
+    by_id: dict[str, dict[str, Any]] = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise ValueError("each checklist row must be a JSON object")
+        row_id = row.get("id")
+        if row_id not in CHECKLIST_IDS:
+            raise ValueError(f"checklist id must be one of {', '.join(CHECKLIST_IDS)}, got {row_id!r}")
+        if row_id in by_id:
+            raise ValueError(f"checklist id '{row_id}' appears more than once")
+        verdict = row.get("verdict")
+        if verdict not in CHECKLIST_VERDICTS:
+            raise ValueError(f"checklist verdict must be one of {', '.join(CHECKLIST_VERDICTS)}, got {verdict!r}")
+        if row_id == "tracking" and verdict == "fail":
+            raise ValueError("the tracking row cannot be 'fail': a missing UTM key or custom attribute is a handoff, not a failed run (rule 14)")
+        evidence = row.get("evidence")
+        if not isinstance(evidence, str) or not evidence.strip():
+            raise ValueError(f"checklist row '{row_id}' needs evidence: what was read, not what was intended")
+        entry = {"id": row_id, "verdict": verdict, "evidence": evidence}
+        handoff = row.get("handoff")
+        if verdict == "handoff":
+            if not isinstance(handoff, str) or not handoff.strip():
+                raise ValueError(f"checklist row '{row_id}' is a handoff and needs handoff wording for the publisher")
+            entry["handoff"] = handoff
+        elif isinstance(handoff, str) and handoff.strip():
+            entry["handoff"] = handoff
+        by_id[row_id] = entry
+    missing = [i for i in CHECKLIST_IDS if i not in by_id]
+    if missing:
+        raise ValueError(f"checklist is missing rows: {', '.join(missing)}")
+    return [by_id[i] for i in CHECKLIST_IDS]
+
+
 def set_fields(manifest: dict[str, Any], *, status: str | None = None, guard_verdict: Any = None, pre_hash: str | None = None,
-               post_hash: str | None = None, accept: list[str] | None = None) -> None:
+               post_hash: str | None = None, accept: list[str] | None = None, checklist: Any = None) -> None:
     if status is not None:
         if status not in STATUSES:
             raise ValueError(f"status must be one of {', '.join(STATUSES)}")
@@ -152,6 +198,10 @@ def set_fields(manifest: dict[str, Any], *, status: str | None = None, guard_ver
         manifest["preSnapshotHash"] = pre_hash
     if post_hash is not None:
         manifest["postSnapshotHash"] = post_hash
+    if checklist is not None:
+        # Recording the table does not move "status": the guard sets "failed",
+        # a tracking handoff leaves the run where it was (manifest-schema.md).
+        manifest["normativeChecklist"] = normative_checklist(checklist)
     for entry in accept or []:
         bucket = manifest.setdefault("acceptedDeviations", [])
         if entry not in bucket:
@@ -267,6 +317,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--pre-snapshot-hash")
     p.add_argument("--post-snapshot-hash")
     p.add_argument("--accept-deviation", action="append", default=[], metavar="KIND:KEY")
+    p.add_argument("--normative-checklist", help="path to the Phase 6 checklist rows, or inline JSON")
 
     p = sub.add_parser("summarize", help="print a summary")
     p.add_argument("manifest")
@@ -312,9 +363,19 @@ def main(argv: list[str] | None = None) -> int:
                     verdict = _load(args.guard_verdict)
                 except OSError:
                     verdict = json.loads(args.guard_verdict)
-            set_fields(manifest, status=args.status, guard_verdict=verdict, pre_hash=args.pre_snapshot_hash, post_hash=args.post_snapshot_hash, accept=args.accept_deviation)
+            checklist = None
+            if args.normative_checklist:
+                try:
+                    checklist = _load(args.normative_checklist)
+                except OSError:
+                    checklist = json.loads(args.normative_checklist)
+            set_fields(manifest, status=args.status, guard_verdict=verdict, pre_hash=args.pre_snapshot_hash, post_hash=args.post_snapshot_hash,
+                       accept=args.accept_deviation, checklist=checklist)
             _save(args.manifest, manifest)
-            _emit({"ok": True, "status": manifest["status"]})
+            result: dict[str, Any] = {"ok": True, "status": manifest["status"]}
+            if checklist is not None:
+                result["normativeChecklist"] = {row["id"]: row["verdict"] for row in manifest["normativeChecklist"]}
+            _emit(result)
             return 0
 
         if args.command == "summarize":

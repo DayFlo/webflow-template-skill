@@ -32,10 +32,44 @@ Locale: MEASURE (`get_site`) the primary locale, its id, whether localization
 is enabled, and any secondary locales. The skill writes the primary locale only
 (rule 16).
 
-Site-level tracking: MEASURE (`data_scripts_tool > get_site_scripts`) whether
-any registered scripts are applied site-wide, and note how tracking actually
-reaches pages (site settings, a script component, per-page embeds). The skill
-never adds page or site scripts (rule 14).
+## Site-level tracking
+
+**This is the section `rules.md` rule 14 and `flows/build.md` Phase 6 read.**
+It records the tracking convention the site already uses, so that a build can
+**match** it. It is never a scheme to apply: a build copies link destinations
+from the brief, copies link extras only where this section already lists them,
+and adds nothing else.
+
+MEASURE two things. Delivery: `data_scripts_tool > get_site_scripts`, plus
+whatever the component census and the exemplar pages show about how tracking
+reaches a page. Link extras: read the links already on the site's own CTAs —
+the exemplar pages' link elements as `data_element_tool > get_all_elements` and
+`data_element_settings_tool` return them — and record the query parameters and
+custom attribute names they carry, if any.
+
+| Question | Answer | Measured |
+| --- | --- | --- |
+| Delivery — how tracking reaches a page | `<site scripts / a named shell component / per-page embeds / none / UNMEASURED>` | `<date>` |
+| Link extras the MCP can see on existing CTAs | `<none / UTM keys: <keys> / custom attribute: <name> / UNMEASURED>` | `<date>` |
+| Sibling CTA the answer was read on | `<page and element, so a handoff can name a real example>` | `<date>` |
+
+Name a shell component by **name**, never by id (`catalog/README.md`), and list
+it in the family's Shell components row too so Phase 6 can check the page
+carries it.
+
+`none` means none the MCP can see. Click listeners, GTM triggers, and anything
+bound in a script are invisible to this server in both directions: do not infer
+them, and do not record a guess as a measurement. Where either of the first two
+rows is UNMEASURED, the Phase 6 `tracking` row is a WARN ("tracking convention
+unmeasured; skipped"), never a FAIL, and Phase 5 writes destinations and
+targets only.
+
+The skill never adds page or site scripts, never creates or inserts an
+analytics component, and never invents a UTM key or an attribute name this
+table does not list (rule 14). A brief destination whose extras deviate from
+this convention is asked about in the same turn before anything is written;
+without that consent the link goes to the publisher as a handoff
+(`unsupported.md`).
 
 ## Class naming
 

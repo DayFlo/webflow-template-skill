@@ -189,6 +189,93 @@ class ManifestTests(unittest.TestCase):
             self.assertIn(sub, help_result.stdout)
 
 
+def checklist(**overrides):
+    rows = {
+        "outline-match": {"verdict": "pass", "evidence": "get_all_elements: main children in outline order"},
+        "family-rules": {"verdict": "handoff", "evidence": "no analytics component instance on the page",
+                         "handoff": "Place the existing Analytics embed component in the Designer."},
+        "cta": {"verdict": "pass", "evidence": "Button/Label = 'Book a demo', link = /demo"},
+        "seo": {"verdict": "pass", "evidence": "get_page_metadata: draft true, slug acme-integration"},
+        "guard": {"verdict": "pass", "evidence": "diff_inventory.py verdict pass"},
+        "tracking": {"verdict": "warn", "evidence": "convention UNMEASURED in webflow-conventions.md"},
+    }
+    rows.update(overrides)
+    return [{"id": rid, **row} for rid, row in rows.items()]
+
+
+class NormativeChecklistTests(unittest.TestCase):
+    def test_set_records_the_six_rows_in_phase_6_order(self):
+        man = make()
+        shuffled = list(reversed(checklist()))
+        m.set_fields(man, checklist=shuffled)
+        self.assertEqual([row["id"] for row in man["normativeChecklist"]],
+                         ["outline-match", "family-rules", "cta", "seo", "guard", "tracking"])
+        self.assertEqual(man["normativeChecklist"][1]["handoff"], "Place the existing Analytics embed component in the Designer.")
+        self.assertNotIn("handoff", man["normativeChecklist"][0])
+
+    def test_create_leaves_the_checklist_empty(self):
+        self.assertIsNone(make()["normativeChecklist"])
+
+    def test_recording_the_table_does_not_move_status(self):
+        # the guard sets "failed"; a handoff row is publisher work, not a failed run
+        man = make()
+        m.set_fields(man, checklist=checklist(guard={"verdict": "fail", "evidence": "changedPreExisting: styles:nav_link"}))
+        self.assertEqual(man["status"], "open")
+
+    def test_all_six_rows_are_required_once_each(self):
+        rows = checklist()
+        with self.assertRaises(ValueError):
+            m.normative_checklist([r for r in rows if r["id"] != "seo"])
+        with self.assertRaises(ValueError):
+            m.normative_checklist(rows + [dict(rows[0])])
+        with self.assertRaises(ValueError):
+            m.normative_checklist(rows[:-1] + [{"id": "performance", "verdict": "pass", "evidence": "e"}])
+        with self.assertRaises(ValueError):
+            m.normative_checklist({"outline-match": "pass"})
+
+    def test_verdict_vocabulary_and_evidence_are_enforced(self):
+        with self.assertRaises(ValueError):
+            m.normative_checklist(checklist(cta={"verdict": "ok", "evidence": "e"}))
+        with self.assertRaises(ValueError):
+            m.normative_checklist(checklist(cta={"verdict": "pass", "evidence": "   "}))
+        with self.assertRaises(ValueError):
+            m.normative_checklist(checklist(cta={"verdict": "pass"}))
+        # a handoff row must say what the publisher does
+        with self.assertRaises(ValueError):
+            m.normative_checklist(checklist(**{"family-rules": {"verdict": "handoff", "evidence": "no analytics component"}}))
+
+    def test_tracking_cannot_fail_the_run(self):
+        # rule 14: missing link extras are a handoff, never a FAIL
+        with self.assertRaises(ValueError) as ctx:
+            m.normative_checklist(checklist(tracking={"verdict": "fail", "evidence": "no utm_source on the CTA"}))
+        self.assertIn("rule 14", str(ctx.exception))
+        rows = m.normative_checklist(checklist(tracking={"verdict": "handoff", "evidence": "CTA carries no utm_source; siblings do",
+                                                         "handoff": "Add the same utm_source=site utm_medium=cta the pricing hero CTA uses."}))
+        self.assertEqual(rows[-1]["verdict"], "handoff")
+
+    def test_cli_set_normative_checklist(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = os.path.join(tmp, "manifest.json")
+            with open(path, "w") as fh:
+                json.dump(make(), fh)
+            rows_path = os.path.join(tmp, "checklist.json")
+            with open(rows_path, "w") as fh:
+                json.dump(checklist(), fh)
+            ok = subprocess.run([sys.executable, script("manifest.py"), "set", path, "--normative-checklist", rows_path],
+                                capture_output=True, text=True)
+            self.assertEqual(ok.returncode, 0, ok.stdout + ok.stderr)
+            self.assertEqual(json.loads(ok.stdout)["normativeChecklist"]["tracking"], "warn")
+            with open(path) as fh:
+                self.assertEqual(len(json.load(fh)["normativeChecklist"]), 6)
+
+            bad = subprocess.run([sys.executable, script("manifest.py"), "set", path, "--normative-checklist",
+                                  json.dumps(checklist(tracking={"verdict": "fail", "evidence": "no utm_source"}))],
+                                 capture_output=True, text=True)
+            self.assertEqual(bad.returncode, 1)
+            with open(path) as fh:
+                self.assertEqual(json.load(fh)["normativeChecklist"][-1]["verdict"], "warn", "a rejected table must not overwrite the recorded one")
+
+
 class SkippedStepTests(unittest.TestCase):
     def test_skipped_steps_do_not_touch_created_or_publish_actions(self):
         # dry runs and resumed runs append steps as "skipped"; nothing was made in this call

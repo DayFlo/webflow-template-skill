@@ -38,6 +38,13 @@ First public release.
   both `README.md` and the skill's `SKILL.md`, the rulebook still forbids
   `publish_site`, and the uploaded-asset warning is still in the rulebook and
   the build flow.
+- README install for Claude.ai: zip the `webflow-template` skill folder (folder
+  name must match the skill name), upload at Customize → Skills, or have a
+  Team/Enterprise owner provision it under Organization settings → Skills.
+  Claude.ai does not clone this repository.
+- Phase 6 normative checklist and site-matched tracking: verify by readback
+  table (PASS/WARN/FAIL/HANDOFF); copy only link extras the site already uses;
+  tracking gaps hand off to the Designer.
 
 ### Notes
 

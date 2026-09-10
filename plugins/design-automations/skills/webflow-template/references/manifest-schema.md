@@ -30,6 +30,7 @@ offered to the user as a download. Script: `../scripts/manifest.py`.
 | `created` | object | `pageId` (string \| null), `branchId` (string \| null), `componentIds`, `styleNames`, `variableIds`, `assetIds`, `instructionPaths` (arrays of strings) |
 | `preSnapshotHash`, `postSnapshotHash` | string \| null | `sha256:<hex>` of the snapshot JSON used by the guard (shape below) |
 | `guardVerdict` | object \| null | The output of `diff_inventory.py` |
+| `normativeChecklist` | array<object> \| null | Optional. The Phase 6 checklist (`flows/build.md`) as filled: one entry per row; see below. `null` until Phase 6 records it |
 | `acceptedDeviations` | array<string> | `kind:key` entries the user accepted after a failed guard |
 | `publishActions` | array<object> | Must stay empty except explicit staging `publish_branch` in branch mode |
 | `status` | enum(`open`, `verified`, `failed`, `cleaned`) | |
@@ -46,6 +47,21 @@ offered to the user as a download. Script: `../scripts/manifest.py`.
 | `status` | enum(`ok`, `failed`, `skipped`) | `skipped` is used by resume for steps already done |
 | `note` | string | Short free text |
 
+### `normativeChecklist[]`
+
+The Phase 6 table, recorded so Phase 7 and a resumed run print the same rows.
+All six rows, in the Phase 6 order; the script sorts them into it.
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `id` | enum(`outline-match`, `family-rules`, `cta`, `seo`, `guard`, `tracking`) | Each id exactly once |
+| `verdict` | enum(`pass`, `warn`, `fail`, `handoff`) | `tracking` may not be `fail`: a missing UTM key or custom attribute is a HANDOFF, never a failed run (`references/rules.md` rule 14) |
+| `evidence` | string | What was read — the call, the node or field, the value returned. Required and non-empty |
+| `handoff` | string | Required on a `handoff` verdict, the Designer work in `unsupported.md` wording; omitted otherwise |
+
+A `fail` row does not by itself set `status`: the guard sets `failed` as it
+always did, and a `tracking` HANDOFF leaves the status alone.
+
 ## Script commands
 
 ```
@@ -56,6 +72,7 @@ manifest.py append manifest.json --tool T --action A [--status ok|failed|skipped
     [--ids '{"pageId": "..."}'] [--note TEXT] [--at ISO]
 manifest.py set manifest.json [--status S] [--guard-verdict verdict.json]
     [--pre-snapshot-hash H] [--post-snapshot-hash H] [--accept-deviation kind:key]
+    [--normative-checklist checklist.json]
 manifest.py summarize manifest.json
 manifest.py ships manifest.json
 ```

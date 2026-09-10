@@ -32,8 +32,8 @@ below.
 The shape of every build is fixed:
 
 **receive a design → digest it → interview the submitter → pick a family →
-approve a visual outline → build an unpublished page → verify by readback →
-report and hand off.**
+approve a visual outline → build an unpublished page → verify by the
+normative checklist (readback, not memory) → report and hand off.**
 
 ## Onboarding comes first
 

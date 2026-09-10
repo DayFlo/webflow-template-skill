@@ -43,6 +43,9 @@ at onboarding.
   manifest and metadata structure, plus a disclosure guard that fails on a
   Bridge App launch link, a secret-shaped token, or an identifier outside the
   synthetic set.
+- Phase 6 normative checklist (outline, family rules, CTA, SEO, guard,
+  tracking) recorded on the manifest; link extras match the measured site
+  convention only; missing tracking is Designer handoff, never a silent create.
 
 ### Known limitations
 

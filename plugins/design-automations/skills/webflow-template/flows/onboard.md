@@ -184,6 +184,20 @@ not measure stays UNMEASURED; no later flow may treat it as known.
   **locales** (`data_sites_tool > get_site`), **CMS collections** (names only,
   `data_cms_tool`) and **assets** (`data_assets_tool > list_assets`; you need
   the count for the next bullet).
+- **Tracking convention.** Two answers, both into "Site-level tracking". First,
+  **delivery**: what `get_site_scripts` returned, and how tracking actually
+  reaches a page — site scripts, a named shell component, per-page embeds, or
+  none. Name a component by name, and list it in the family's Shell components
+  row as well. Second, **link extras**: read the links already on the site's
+  own CTAs on the exemplar pages (`data_element_tool > get_all_elements`, then
+  the link values from `data_element_settings_tool`) and record the query
+  parameters and the custom attribute names they carry — the UTM keys, the
+  attribute name, or `none`. Record one real sibling CTA the answer came from,
+  so a later handoff can point at it. This is the convention a build **matches**
+  (rule 14); it is not a scheme to apply, so record only what you read. Click
+  listeners and GTM triggers are invisible to this server: do not infer them,
+  and leave either row UNMEASURED rather than guessing — Phase 6 then warns and
+  skips its tracking check instead of trusting a guess.
 - **Branching.** `data_pages_tool > list_branches`. Record `200` (available) or
   `403 not_enterprise_plan_site` (not available) as the site-wide answer. When
   available, also try the read path with a branch page id (`get_all_elements`

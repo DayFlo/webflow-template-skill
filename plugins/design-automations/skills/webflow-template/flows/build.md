@@ -403,12 +403,35 @@ next step** (`python3 scripts/manifest.py append ...` or the manual procedure in
    with `data_element_tool > query_elements` and an `element_filter` scoped to
    the copied section root (by element type, by class, or by the master's
    current text), then write with `data_element_settings_tool`: text, link
-   `href` with target and any tracking attribute, image asset and alt. Set the
-   H1 first. Where the conventions file says it cannot (deep reads 429, or slot
-   children come back without element ids), treat every loose-section slot and
-   every slot-child prop as a manual handoff item, keep component props as the
-   only automated content path, and tell the submitter at the outline stage
-   which slots will be filled by hand.
+   `href` and target, image asset and alt. Set the H1 first. Where the
+   conventions file says it cannot (deep reads 429, or slot children come back
+   without element ids), treat every loose-section slot and every slot-child
+   prop as a manual handoff item, keep component props as the only automated
+   content path, and tell the submitter at the outline stage which slots will be
+   filled by hand.
+
+   **Link destinations, and link extras.** The destination and the target come
+   from the brief — a page id for an internal link, a URL path for an external
+   one. That is content, and it is copied as given. Link **extras** are not:
+   copy a UTM key or a custom attribute **only** where it is the site's
+   measured convention (`webflow-conventions.md`, "Site-level tracking"), that
+   is, the same UTM keys or the same attribute name other CTAs on this site
+   already carry. Copying those is matching. Anything else is a new tracking
+   scheme and a build does not write one (rule 14): do not invent extras the
+   convention does not list, and do not silently keep brief-only query
+   parameters or attributes that deviate from it.
+
+   Where the brief's destination carries extras that **differ** from the
+   convention, stop and ask in that same turn, in the shape of the asset-upload
+   warning below: "This destination carries `<brief extras>` but the site's
+   other CTAs use `<convention extras>`. Shall I apply the site's extras, keep
+   the brief's extras (a deviation from the convention, which the report will
+   name), or hand this link to the publisher?" Wait for the answer; write
+   nothing deviant before it arrives. Where the convention is `none` or
+   UNMEASURED, write the destination and the target and nothing else. Never add
+   extras to be helpful, and never create or insert an analytics component: a
+   shell component the family's table does not name is Designer work, and one
+   the family does name but the page is missing is a Phase 6 HANDOFF.
 
    Where the master carries more repeated nodes than the brief (a fourth stat
    card, a fifth FAQ question block) remove the surplus with `remove_element`;
@@ -463,15 +486,18 @@ next step** (`python3 scripts/manifest.py append ...` or the manual procedure in
     (except staging, on explicit request, in branch mode);
     `unregister_component`; `delete_variable`; `remove_element` on anything not
     created in this run; `update_style` on a pre-existing class;
-    `set_site_scripts`; `set_page_scripts`; localization writes.
+    `set_site_scripts`; `set_page_scripts`; localization writes; link extras
+    that are not the site's measured tracking convention; creating or inserting
+    an analytics or tracking component.
 
 If the Designer is not reachable and a step needs it (folder creation, canvas
 navigation), do not improvise: use the pre-created folder from the catalog, or
 record the step as a manual handoff item.
 
-## Phase 6: Verify (readback, not memory)
+## Phase 6: Verify (normative checklist, readback not memory)
 
 Every check reads the live site. Do not answer from what you intended to do.
+The reads come first; the checklist below is filled from what they returned.
 
 - **Structure.** One `data_element_tool > get_all_elements` on the page
   (serialized, never alongside other element reads), as deep as the conventions
@@ -520,8 +546,59 @@ Every check reads the live site. Do not answer from what you intended to do.
   `created.variableIds` and `created.assetIds` from the manifest by hand
   (`manifest-schema.md`).
 
+### The normative checklist
+
+Fill the table once, from the reads above, before writing the report. Six rows,
+always all six, in this order. The verdict vocabulary is fixed:
+
+- **PASS** — read back and it matches.
+- **WARN** — could not be checked (a read was blocked, the Designer was closed,
+  the convention is UNMEASURED). Say what was skipped and why.
+- **FAIL** — read back and it does not match. The run is not `verified`.
+- **HANDOFF** — a gap the publisher closes in the Designer. It does not fail the
+  run and it is repeated in the report's manual work list (`unsupported.md`
+  wording).
+
+Evidence is what was read: the call, the node or field, and the value it
+returned. "Built as planned" is not evidence; neither is the brief. A row whose
+evidence would only come from memory is a WARN, not a PASS.
+
+| id | Check | PASS when | Evidence |
+| --- | --- | --- | --- |
+| `outline-match` | Outline match | Section order equals the approved outline; each section's component and variant equals the recipe; no master section the outline dropped is still on the page | The `get_all_elements` read: children of `main` in order, with component id and variant per instance and the class path per loose root |
+| `family-rules` | Family rules | Every `required` row of the family's section outline is present; the shell components the brief kept (nav, footer, and an analytics component if the family's shell table names one) are on the page; the family's checkable Do items hold — one primary CTA, an H1 present | The same structure read, matched against the catalog entry's Section outline `Required` column and Shell components table |
+| `cta` | CTA | The primary CTA is above the fold (first or second section); every CTA label and destination equals `answers.primaryAction` and the brief's `ctaLabel` / `ctaLink` slots | Prop values and `data_element_settings_tool` link values as read back, quoted next to the brief's values |
+| `seo` | SEO and page metadata | `draft: true`, slug, parent folder, SEO title and description, Open Graph, and schema type all read back as the brief specifies | `get_page_metadata` and `query_pages_schema_markup` |
+| `guard` | Guard | `diff_inventory.py` reports no change to a pre-existing style, component, or variable definition | The guard verdict and, on a change, the named key |
+| `tracking` | Tracking | Every CTA carries the link extras the site's measured convention expects, and the family's analytics shell component is on the page | The live link values from the same structure read, next to the convention recorded in `webflow-conventions.md`, "Site-level tracking" |
+
+Row-specific rules, where the verdict is not the obvious one:
+
+- `family-rules`: a **missing analytics shell component is HANDOFF**, never a
+  silent create. The publisher places the component in the Designer; Phase 5
+  does not add it.
+- `cta`: a destination that does not match the brief is a **FAIL** — it is
+  wrong content on the page, not a gap. A missing label is a FAIL too.
+- `guard`: **FAIL still fails the run**, exactly as before; nothing in this
+  table softens it.
+- `tracking`: gaps are **HANDOFF only**. Never FAIL a run for a missing UTM
+  parameter or a missing custom attribute. Compare the expected CTAs (the
+  brief's `primaryAction` and its `ctaLabel` / `ctaLink` slots) with the live
+  links from the Phase 6 structure read, against the convention
+  `webflow-conventions.md` recorded at onboarding: how tracking is delivered
+  (site scripts, a named shell component, per-page embeds, none) and which link
+  extras the MCP can see (none, UTM keys, a custom attribute name). Where either
+  answer is UNMEASURED, the verdict is **WARN**: "tracking convention
+  unmeasured; skipped". Do not invent GTM events or infer click listeners — the
+  MCP cannot read them. The build does not add tracking (rule 14); a gap goes to
+  the publisher with the conditional wording in `unsupported.md`.
+
+Record the filled table on the manifest with `python3 scripts/manifest.py set
+--normative-checklist checklist.json` (`manifest-schema.md`,
+`normativeChecklist`), or write the rows by hand where the script cannot run.
+
 A failed guard sets the manifest `status` to `failed` until the user decides; a
-clean run sets `verified`.
+clean run sets `verified`. A `tracking` HANDOFF row does not change the status.
 
 ## Phase 7: Report and handoff
 
@@ -535,10 +612,14 @@ Return, in this order:
    records that it works on this site, and marked "unverified" otherwise.
 2. Slug and folder; isolation mode (and branch name if any).
 3. The section mapping table **as built**, with reuse labels.
-4. Verification results, item by item, and the guard verdict.
+4. **The normative checklist table first** — all six rows with their verdict and
+   their evidence, in the Phase 6 order — then the rest of the verification
+   results item by item and the guard verdict.
 5. Manual work list: Interactions, embeds, fonts, anything from
-   `unsupported.md`, every slot the brief marked `manual`, and any step skipped
-   because the Designer was closed.
+   `unsupported.md`, every slot the brief marked `manual`, any step skipped
+   because the Designer was closed, and every HANDOFF row of the checklist
+   (a missing analytics shell component, missing link extras) worded as
+   Designer work.
 6. Open decisions still unresolved.
 7. **Already public: assets uploaded by this run.** One line per asset, with
    its name and its CDN URL: "these files are on Webflow's public CDN now,

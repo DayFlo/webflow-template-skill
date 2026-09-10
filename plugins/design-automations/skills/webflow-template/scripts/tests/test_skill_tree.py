@@ -189,6 +189,31 @@ class SkillTreeTests(unittest.TestCase):
         self.assertLess(phase7.index("Already public"), phase7.index("Ships-at-next-publish"),
                         "the already-public line is reported before ships-at-next-publish")
 
+    def test_phase6_normative_checklist_and_tracking_match(self):
+        """Phase 6 names the checklist; Phase 7 prints it before ships-at-next-publish;
+        builds match site tracking extras and ask before any deviation; rule 14
+        still forbids page/site scripts."""
+        build = read("flows", "build.md")
+        self.assertIn("## Phase 6: Verify (normative checklist, readback not memory)", build)
+        self.assertIn("### The normative checklist", build)
+        for row_id in ("outline-match", "family-rules", "cta", "seo", "guard", "tracking"):
+            self.assertIn(f"`{row_id}`", build, row_id)
+
+        phase7 = build.split("## Phase 7", 1)[1]
+        self.assertIn("normative checklist", flat(phase7))
+        self.assertLess(phase7.lower().index("normative checklist"),
+                        phase7.lower().index("ships-at-next-publish"),
+                        "the checklist is reported before ships-at-next-publish")
+
+        self.assertIn("do not invent extras the convention does not list", flat(build))
+        self.assertIn("stop and ask in that same turn", flat(build))
+        self.assertIn("measured convention", flat(build))
+
+        rules = read("references", "rules.md")
+        rule14 = rules.split("14. ", 1)[1].split("\n15. ", 1)[0]
+        self.assertIn("No site scripts, no page scripts", rule14)
+        self.assertIn("Never add a new tracking scheme", flat(rule14))
+
     # -------------------------------------------------- onboarding without a repo
 
     def test_onboard_offers_a_store_choice_with_a_403_fallback(self):

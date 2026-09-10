@@ -7,7 +7,7 @@ instruction someone can follow in the Designer.
 
 Two kinds of row are mixed here and it matters which is which. Most rows are
 **capability gaps**: the MCP server has no tool for the thing, on any site. The
-last three are **conditional**: whether they apply to you depends on a scope
+rows at the end are **conditional**: whether they apply to you depends on a scope
 your connector token may or may not have, or on a limit your site may or may
 not hit. `flows/onboard.md` measures those and records the answer in
 `webflow-conventions.md`; do not carry a conditional row into a report without
@@ -29,6 +29,7 @@ checking it there first.
 | **Page-level JSON-LD when the connector token lacks the page schema write scope** (HTTP 403 `insufficient_permissions` on `bulk_update_pages_schema_markup` while `query_pages_schema_markup` works) | conditional | Token scope, not a missing tool. Measured at onboarding; see "Schema defaults" | "Ask the Webflow workspace admin to grant the connector user the page schema write permission, or paste this JSON-LD into Page settings > Custom code > Head for `<page>`: `<payload>`." |
 | **Content inside loose sections and slot children on a site whose element reads exceed the request budget** | conditional | Webflow MCP prefetch, not a missing tool; `rules.md` rule 10. Whether it applies is the capability table in `webflow-conventions.md`, "Rate limits and response sizes". On a small site this row does not apply at all | "In the Designer set `<node>` in `<section>` to `<value>`" for each unreachable slot; the report lists them with the brief's final text so the edit is copy and paste. |
 | **A Designer URL that opens a given page** | conditional | No MCP tool returns a page URL; guessed `https://<site-short-name>.design.webflow.com?pageId=` forms may open a tab the Bridge App is not bound to. `designer_tool > switch_page` navigates the connected tab | "In the Designer open Pages > `<folder>` > `<page title>` (page id `<id>`)." When the Bridge App is connected the run has already switched the canvas to the page. |
+| **Tracking a CTA carries that the build did not write** (link extras, or the family's analytics shell component) | conditional | Not a missing tool: rule 14 keeps a build from writing a tracking scheme the site does not already use, and MCP cannot read click listeners in either direction. Whether it applies is `webflow-conventions.md`, "Site-level tracking" | "In the Designer open `<page>` and give `<CTA element>` the same link extras the site's other CTAs already carry: `<UTM keys or attribute name and value>`, as on `<sibling CTA>` on `<sibling page>`." For a missing shell: "place the existing `<component name>` component the `<family>` shell table names in `<section>`." Do not invent a new attribute, a new UTM set, or a new component. |
 
 ## How to phrase a handoff
 
