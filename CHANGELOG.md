@@ -46,6 +46,12 @@ First public release.
   table (PASS/WARN/FAIL/HANDOFF); copy only link extras the site already uses;
   tracking gaps hand off to the Designer.
 
+### Changed
+
+- README: install first, then onboarding, then the public-exposure table.
+  Agent Instructions and CMS items sit in that table instead of a trailing
+  essay. British "Licence" heading is now "License".
+
 ### Notes
 
 The skill is site-agnostic by construction. Nothing about any particular
